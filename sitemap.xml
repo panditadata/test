@@ -3,10 +3,16 @@
 <?xml-stylesheet alternate="yes" href="alt.css" title="Alternative style"?>
 <?xml-stylesheet href="single-col.css" media="all and (max-width: 30em)"?>
 <html xmlns="https://panditadata.github.io">
- <head>
-  <title>Data Science Portfolio - Panditadata</title>
- </head>
- <body>
-  ...
- </body>
-</html>
+
+ 
+ 
+<url>
+  <loc>https://panditadata.github.io/</loc>
+  <lastmod>2020-12-22T17:54:04+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://panditadata.github.io/index.html</loc>
+  <lastmod>2020-12-22T17:54:04+00:00</lastmod>
+  <priority>1.80</priority>
+</url>
