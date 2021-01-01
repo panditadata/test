@@ -1,4 +1,4 @@
-https://panditadata.github.io/index.html
-https://panditadata.github.io/left-sidebar.html
-https://panditadata.github.io/right-sidebar.html
-https://panditadata.github.io/no-sidebar.html
+https://panditadata.com/index.html
+https://panditadata.com/left-sidebar.html
+https://panditadata.com/right-sidebar.html
+https://panditadata.com/no-sidebar.html
