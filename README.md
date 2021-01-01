@@ -1,2 +1,2 @@
-# Data Science Portfolio Website for Silvia Calzada
-https://panditadata.github.io
+# Data Science Portfolio Website 
+https://panditadata.com
