@@ -1,5 +1,5 @@
 function fetchEarthquakeData() {
-    const apiUrl = 'https://example.com/api/earthquakes'; // Replace with the actual API endpoint or website URL
+    const apiUrl = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv'; // Replace with the actual API endpoint or website URL
 
     fetch(apiUrl)
         .then(response => response.json())
