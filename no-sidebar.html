@@ -117,10 +117,10 @@
 <!-- Map container -->
 
 <div id="map-section">
-<iframe src="EQ_map1.html" width="600" height="400"></iframe>
+<iframe src="EQ_mapFF.html" width="600" height="400"></iframe>
 </div>
 <!-- Refresh button -->
-<button onclick="refreshMap()">Refresh Data</button>
+<button onclick="refreshMap()">Refresh The Data</button>
 
 <!-- Include necessary Folium and Leaflet JavaScript -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -139,30 +139,7 @@
 
     // Add your Python-generated map script here
     // Ensure to include the correct path to your generated HTML file
-    // Example: <script src="path/to/your/map_script.js"></script>
-</script>
-
-
-
-<body>
-
-<!-- Map container -->
-<div id="map" style="height: 600px;"></div>
-
-<!-- Refresh button -->
-<button onclick="refreshMap()">Refresh Data</button>
-
-<!-- Include necessary Folium and Leaflet JavaScript -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
-<script src="https://unpkg.com/folium@0.12.1/folium.js"></script>
-
-<script>
-    // Function to refresh the map
-    function refreshMap() {
-        // Reload the page to fetch new earthquake data
-        location.reload();
-    }
+    
 </script>
 
 <!-- Include the generated map script -->
