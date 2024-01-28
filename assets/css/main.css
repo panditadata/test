@@ -3338,3 +3338,22 @@ input, select, textarea {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+/* main.css */
+
+#map-section {
+  position: relative;
+}
+
+.iframe-container {
+  position: relative;
+}
+
+.iframe-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+}
