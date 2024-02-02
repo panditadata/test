@@ -3357,9 +3357,5 @@ input, select, textarea {
   padding: 10px;
   border-radius: 5px;
 }
-div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
