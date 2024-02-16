@@ -1,410 +1,150 @@
-
-<!DOCTYPE HTML>
-<!--
-	Helios by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head> 
-		<!-- Global site tag (gtag.js) - Google Analytics -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TST1TS96RW"></script>
 		<script>
-		  window.dataLayer = window.dataLayer || [];
- 		  function gtag(){dataLayer.push(arguments);}
- 		  gtag('js', new Date());
-  		  gtag('config', 'G-TST1TS96RW');
+		    window.dataLayer = window.dataLayer || [];
+ 		    function gtag(){dataLayer.push(arguments);}
+ 		    gtag('js', new Date());
+  		    gtag('config', 'G-TST1TS96RW');
 		</script>
-		<title>Folium|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|Lofi</title>  
-		<!-- Meta tags for search engines and social media -->
-		<meta name="google-site-verification" content="YcTveiQCkLaGlGbB3DjfE2LM7RngWgUDe_qyNnQqcWE" />
-		<meta charset="UTF-8" />
-		<meta name="language" content="en">
-		<meta name="robots" content="index, follow">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-		<meta name="description" content="Embark on a data adventure with PanditaData ! 🐼 Explore captivating Jupyter Notebooks, craft mesmerizing time series visualizations, and dance through interactive maps with folium plugins like timestampedGeoJson and HeatmapwithTime. Unleash the power of data in a fun, informative, and visually stunning way. Join us on a journey where data meets creativity! Keywords Folium|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|Lofi 🚀">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folium|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|REPL| Web Assembly-powered| Python kernel|Pyodide|Pandas|Earthquakes|Monthly|icons|kawai</title>
+    <meta name="google-site-verification" content="YcTveiQCkLaGlGbB3DjfE2LM7RngWgUDe_qyNnQqcWE" />
+    <meta name="robots" content="index, follow">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	<meta name="description" content="Embark on a data adventure with PanditaData ! 🐼 Explore captivating Jupyter Notebooks, craft mesmerizing time series visualizations, and dance through interactive maps with folium plugins like timestampedGeoJson and HeatmapwithTime. Unleash the power of data in a fun, informative, and visually stunning way. Join us on a journey where data meets creativity! Keywords Folium|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|Lofi 🚀">
    	        <meta property="og:image" content="https://panditadata.com/IMG_4358.PNG">
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-                <link rel="manifest" href="/site.webmanifest">
-                <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-                <meta name="msapplication-TileColor" content="#da532c">
-                <meta name="theme-color" content="#ffffff">	
-		<link rel="icon" href="favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="canonical" href="https://panditadata.com">
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		
-	</head>
-	<body class="homepage is-preload">
-		<div id="page-wrapper">
+    <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://panditadata.com">
+</head>
+<body>
+        <!-- header -->
+    <header>
+        <div class="logo"><a href="https://panditadata.com">Panditadata</a></div>
+        <ul class="menu">
+            <li><a href="https://panditadata.com">Home</a></li>
+            <li><a href="https://panditadata.com">Blog</a></li>
+            <li><a href="mailto:panditadata@gmail.com" target="_top">Contact</a></li>
+        </ul>
+        <div class="search">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        </div>
+    </header>
+    <!-- slider -->
 
-			<!-- Header -->
-				<div id="header">
-
-					<!-- Inner -->
-						<div class="inner">
-							<header>
-								<h3><a href="#banner" id="logo">Pandita Data - Data Science Portfolio</a></h3>
-							</header>
-						</div>
-
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="index.html">Homepage</a></li>
-								<li>
-									<a href="https://github.com/panditadata">Github Portfolio</a>
-									<ul>
-										<li><a href="https://github.com/panditadata/Another-WorldBank-With-A-Little-Bit-Of-Spice">Another World Bank Project</a></li>
-										<li><a href="https://github.com/panditadata/Earthquakes">Earthquake Animation</a></li>
-										<li><a href="http://panditadata.com/PreDataSciencePortfolio/">Pre-Portfolio</a></li>
-										<li><a href="https://panditadata.com/no-sidebar.html">About Pandita Data</a></li>
-										<li>
-											<a href="#">And a submenu &hellip;</a>
-											<ul>
-												<li><a href="#">Data Science</a></li>
-												<li><a href="#">Python For Data Science</a></li>
-												<li><a href="#">About Pandita Data</a></li>
-												
-											</ul>
-										</li>
-										<li><a href="#"></a></li>
-									</ul>
-								</li>
-								<li><a href="left-sidebar.html">Data Science</a></li>
-								<li><a href="right-sidebar.html">Python For Data Science</a></li>
-								<li><a href="no-sidebar.html">About Pandita Data</a></li>
-							</ul>
-						</nav>
-
-				</div>
-
-			
-<!-- Features -->
-			 <div class="wrapper style1">
-					<section id="features" class="container special">
-						<div class="row">
-							<article class="col-4 col-12-mobile special">
-								
-								
-							        <iframe src="EQ_mapAF.html" width="1200" height="600" name = 'Discovering America 1492, maritime routes' title= 'Folium with timestampedgeojson plugin to simulate maritime route of Christopher Columbus in 1492 when discovering America'></iframe>
-								
-									
-								
-				
-								<header>
-									
-									<h3><a href="EQ_mapAF.html">StampedGeoJson Folium Map with Time Serios of Maritime Route when Christopher Columbus Discovered America in 1492</a></h3>
-								       
-								</header>
-							       
-								<p>
-									
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="" class="image featured"><div id="map-section"><iframe src="" width="425" height="400"></iframe></div></a>
-								<header>
-									<h3><a href=""></a></h3>
-								</header>
-								<p>
-									
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="" class="image featured"><div id="map-section"><iframe src="" width="425" height="400"></iframe></div></a>
-								<header>
-									<h3><a href=""> </a></h3>
-								</header>
-								<p>
-									    
-									
-								</p>
-							</article>
-						</div>
-					</section>
-				</div>
-			
-			
-			
-			
-			<div class="wrapper style1">
-					<section id="features" class="container special">
-						<div class="row">
-							<article class="col-4 col-12-mobile special">
-								<a href="EQ_mapFFF.html" class="image featured"><div id="map-section">
-							        <iframe src="EQ_mapFFF.html" width="425" height="400"></iframe></div></a>
-									
-								<header>
-									<h3><a href="EQ_mapFFF.html">Earthquakes Displayed For Last 30 Days</a></h3>
-								</header>
-								<p>
-									Earthquakes animation with geographical coordinates, magnitude and time series using TimeStampedGeoJson Folium. Customized Icon.
-									
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="HeatmapwithTime11.html" class="image featured"><div id="map-section">
-							        <iframe src="HeatmapwithTime11.html" width="425" height="400"></iframe></div></a>
-								<header>
-									<h3><a href="HeatmapwithTime11.html">Folium Plugins: HeatMapWithTime, Earthquakes Magnitude across the world since 1970</a></h3>
-								</header>
-								<p>
-									Earthquakes are displayed on a HeatMap With Time. The Display Index (Date and Time) is displayed on a widget that can be moved backward, 
-									forward, stop, move till the end of beginning of the simulation. The Display Index is located in the down left side of the map. The fps can be customized as well to speed up the simulation.
-									The map has a zoom in/out feature. Each earthquake has a color-gradient to display its Magnitude. The gradient colors are: 1: Navy, 2: Blue, 4: Lime, 5: Green, 6: Orange, 7: Red.
-								
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="my_map.html" class="image featured"><div id="map-section">
-							        <iframe src="my_map.html" width="425" height="400"></iframe>
-							        </div></a>
-								
-								
-								<header>
-									<h3><a href="my_map.html">Geemap Google Earth Engine Map</a></h3>  
-								</header>
-								<p>                                                                                                          
-									Geemap: A Python package for interactive geospatial analysis and visualization with Google Earth Engine
-								</p>
-							</article>
-						</div>
-					</section>
-
-				</div>
-			<div class="wrapper style1">
-					<section id="features" class="container special">
-						<div class="row">
-							<article class="col-4 col-12-mobile special">
-								
-								<a href="EQ_map1.html" class="image featured"><div id="map-section"><iframe src="EQ_map1.html" width="425" height="400"></iframe></div></a>
-								<header>
-									<h3><a href="theone_(22).html">Earthquakes with Magnitude 6 and higher since 1968</a></h3>
-								</header>
-								<p>
-									Earthquakes animation with geographical coordinates, magnitude and time series. Magnitude is normalize.
-									Only earthquakes with magnitude bigger than 6 are plotted. 
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="worldss1.html" class="image featured"><div id="map-section"><iframe src="worldss1.html" width="425" height="400"></iframe></div></a>
-								<header>
-									<h3><a href="http://panditadata.com/Another-WorldBank-With-A-Little-Bit-Of-Spice">Another World Bank Project...Add A Little Bit Of Spice</a></h3>
-								</header>
-								<p>
-									Coursera</a> Project in which a <a href="https://databank.worldbank.org/home.aspx">World Bank</a> dataset is uploaded from the internet into Google Colab and cleaned.
-									Statistical Analysis is performed including ANOVA. For clarity purposes, ANOVA step-by-step calculation is included. To enhance the visuals, folium clorometh map is presented with a selection of tiles.
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="EQ_Merged_Stage.html" class="image featured"><div id="map-section"><iframe src="EQ_Merged_Stage.html" width="425" height="400"></iframe></div></a>
-								<header>
-									<h3><a href="EQ_Merged_Stage.html">Some Random Data Around the World</a></h3>
-								</header>
-								<p>
-									    <div class="accessibility" style="color:#1E2F97"> <div class="center">  <p> <span style="font-weight:500">     data<7%  North Star Blue #1E2F97</span></p> </div>  
-									    <div class="accessibility" style="color:#1AA7EC"> <div class="center">  <p> <span style="font-weight:500"> 14%>data>=7% Button Blue #1AA7EC</span></p> </div>
-									    <div class="accessibility" style="color:#4ADEDE"> <div class="center">  <p> <span style="font-weight:500"> 28%>data>=14% Neon Nazar #4ADEDE</span></p> </div>  
-									    <div class="accessibility" style="color:#797EF6"> <div class="center">  <p> <span style="font-weight:500">     data>=28% Byzantine Night Blue #797EF6</span></p> </div>  
-									
-								</p>
-							</article>
-						</div>
-					</section>
-
-			  </div>
-			  <div class="wrapper style1">
-					<section id="features" class="container special">
-						<div class="row">
-							<article class="col-4 col-12-mobile special">
-								
-								<a href="" class="image featured"><div id="map-section"><iframe src="" width="425" height="400"></iframe></div></a>
-								<header>
-									<h3><a href="">  </a></h3>
-								</header>
-								<p>
-									
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="" class="image featured"><div id="map-section"><iframe src="" width="425" height="400"></iframe></div></a>
-								<header>
-									<h3><a href=""></a></h3>
-								</header>
-								<p>
-									
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="" class="image featured"><div id="map-section"><iframe src="" width="425" height="400"></iframe></div></a>
-								<header>
-									<h3><a href=""> </a></h3>
-								</header>
-								<p>
-									    
-									
-								</p>
-							</article>
-						</div>
-					</section>
-
-			  </div>
-			<!-- Main -->
-				<div class="wrapper style2">
-
-					<article id="main" class="container special">
-						<a href="" class="image featured"><div id="map-section"><iframe src="" width="425" height="400"></iframe></div></a>
-						<header>
-							<h2><a href=""> </a></h2>
-							<p>
-							<a href=" ">  </a>		
-							</p>
-							 
-						</header>
-						<p>
-							
-						</p>
-						<footer>
-							<a href="EQ_mapFFF.html" class="button">Animation</a>
-						</footer>
-					</article>
-
-				</div>
-			    
-				
- 
-
-			<!-- Footer -->
-				<div id="footer">
-					<div class="container">
-						<div class="row">
-
-							<!-- Tweets -->
-								<section class="col-4 col-12-mobile">
-									<header>
-										<h2 class="icon brands fa-twitter circled"><span class="label">Tweets</span></h2>
-									</header>
-									<ul class="divided">
-											<article class="tweet">
-												<a class="twitter-timeline" href="https://twitter.com/panditadata?ref_src=twsrc%5Etfw">Tweets by panditadata</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-									</ul>
-								</section>
-
-							<!-- Posts -->
-								<section class="col-4 col-12-mobile">
-									<header>
-										<h2 class="icon solid fa-file circled"><span class="label">Posts</span></h2>
-									</header>
-									<ul class="divided">
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#"></a></h3>
-												</header>
-												<span class="timestamp"></span>
-											</article>
-										</li>
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#"></a></h3>
-												</header>
-												<span class="timestamp"></span>
-											</article>
-										</li>
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#"></a></h3>
-												</header>
-												<span class="timestamp"></span>
-											</article>
-										</li>
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#"></a></h3>
-												</header>
-												<span class="timestamp"></span>
-											</article>
-										</li>
-									</ul>
-								</section>
-
-							<!-- Photos -->
-								<section class="col-4 col-12-mobile">
-									<header>
-										<h2 class="icon solid fa-camera circled"><span class="label">Photos</span></h2>
-									</header>
-									<div class="row gtr-25">
-										<div class="col-6">
-											<a href="worldss1.html" class="image fit"><img src="images/IM1small.gif" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="EQ_map.html" class="image fit"><img src="images/IMEQsmall.gif" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="Nowyes1night.html" class="image fit"><img src="images/image0.gif" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic13.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic14.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic15.jpg" alt="" /></a>
-										</div>
-									</div>
-								</section>
-
-						</div>
-						<hr />
-						<div class="row">
-							<div class="col-12">
-
-								<!-- Contact -->
-									<section class="contact">
-										<header>
-											<h3>Have questions about Panditadata Projects or Data Science?</h3>
-										</header>
-										<p><a href = "mailto:panditadata@gmail.com?subject = Feedback&body = Message"> Send Feedback </a> 
-														panditadata@gmail.com	
-										</p>
-										<ul class="icons">
-											<li><a href="https://twitter.com/panditadata" class="icon brands fa-twitter"><span class="label">Panditadata in Twitter</span></a></li>
-											<li><a href="https://github.com/panditadata" class="fab fa-github"><span class="label"></span></a></li>
-											<li><a href="https://www.instagram.com/panditadata/" class="icon brands fa-instagram"><span class="label">Panditadata in Instagram</span></a></li>
-											<li><a href="https://panditadata.github.io/no-sidebar.html" class="far fa-file"><span class="label"></span></a></li>
-											
-											<li><a href="" class="icon brands fa-linkedin-in"><span class="label"> In Linkedin</span></a></li>
-										</ul>
-									</section>
-
-								<!-- Copyright -->
-									<div class="copyright">
-										<ul class="menu">
-											<li>&copy; Panditadata. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-										</ul>
-									</div>
-
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    <div class="slider">
+        <!-- list Items -->
+        <div class="list">
+            <div class="item active">
+                <iframe src="image/temperatureworld.html"></iframe>
+                <div class="content">
+                    <p>HeatMapwithTime-Interactive Map</p>
+                    <h2>World Temperature</h2>
+                    <p>
+                        Folium Map With HeatMapwithTime To Visualize Average Monthly Temperature since 1743         
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_mapFFF.html"></iframe>
+                <div class="content">
+                    <p>TimeStampedGeoJson - Dynamic Map</p>
+                    <h2>Earthquakes</h2>
+                    <p>
+                        Folium Map With TimeStampedGeoJson To Simulate Earthquakes For Last 30 Days        
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_mapAF.html"></iframe>
+                <div class="content">
+                    <p>Folium - Animation</p>
+                    <h2>America</h2>
+                    <p>
+                        Folium Map With  TimeStampedGeoJson  Maritime Route  1492
+                        
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_Merged_Stage.html"></iframe>
+                <div class="content">
+                    <p>Time Series</p>
+                    <h2>Data</h2>
+                    <p>
+                        Some random data displayed. The darker the color, the lowest the %
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/HeatmapwithTime1.html"></iframe>
+                <div class="content">
+                    <p>HeatmapwithTime</p>
+                    <h2>Earthquakes</h2>
+                    <p>
+                        Earthquakes display since 1970 with gradient magnitude
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_map1.html"></iframe>
+                <div class="content">
+                    <p>Folium</p>
+                    <h2>Earthquakes</h2>
+                    <p>
+                        Since 1970. All 
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- button arrows -->
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+        <!-- thumbnail -->
+        <div class="thumbnail">
+            <div class="item active">
+                <iframe src="image/temperatureworld.html" ></iframe>
+                <div class="content">
+                    HeatMapTime
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_mapFFF.html" ></iframe>
+                <div class="content">
+                    Folium 
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_mapAF.html"></iframe>
+                <div class="content">
+                    Route
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_Merged_Stage.html"></iframe>
+                <div class="content">
+                    Timestamped
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/HeatmapwithTime1.html"></iframe>
+                <div class="content">
+                    HeatMapTime
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_map1.html"></iframe>
+                <div class="content">
+                    Time Series
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
