@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Database connection parameters
 $servername = "root@localhost";
 $username = "root";
-$password = "Dubai123!@#";
+$password = "$A$005$lO";
 $dbname = "mysql";
 
 // Create connection
