@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 // Database connection parameters
 $servername = "root@localhost";
-$username = "panditadata";
+$username = "root";
 $password = "Dubai123!@#";
 $dbname = "mysql";
 
