@@ -312,7 +312,7 @@ feedbackFormContainer button {
     cursor: pointer;
 }
 
-.feedbackFormContainer button:hover {
+feedbackFormContainer button:hover {
     background-color: #0c00b3;
 }
 /* Style the rating container */
