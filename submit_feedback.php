@@ -45,6 +45,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+if ($file) {
+    if (fputcsv($file, $data) === false) {
+        // Handle CSV writing error
+        error_log("Failed to write to feedback.csv");
+    }
+    fclose($file);
+} else {
+    // Handle file opening error
+    error_log("Failed to open feedback.csv for writing");
+}
 
 ?>
 
