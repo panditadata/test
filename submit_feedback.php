@@ -7,10 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $feedback_text = $_POST['feedback_text'];
     
 // Database connection parameters
-$servername = "root@localhost";
+$servername = "LAPTOP-1AP87EQF";
 $username = "root";
 $password = "$A$005$lO";
-$dbname = "mysql";
+$dbname = "MYSQL";
 
 // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
