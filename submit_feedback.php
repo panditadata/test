@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $servername = "LAPTOP-1AP87EQF";
 $username = "pandi";
 $password = "Dubai123!@#123!@#";
-$dbname = "MYSQL";
+$dbname = "mysql";
 
 // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
