@@ -8,8 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 // Database connection parameters
 $servername = "LAPTOP-1AP87EQF";
-$username = "root";
-$password = "$A$005$lO";
+$username = "pandi";
+$password = "'Dubai123!@#123!@#";
 $dbname = "MYSQL";
 
 // Create connection
