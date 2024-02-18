@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $feedback_text = $_POST['feedback_text'];
     
 // Database connection parameters
-$servername = "LAPTOP-1AP87EQF";
+$servername = "localhost";
 $username = "pandi";
 $password = "Dubai123!@#123!@#";
 $dbname = "mysql";
