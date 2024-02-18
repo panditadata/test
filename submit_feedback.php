@@ -1,40 +1,40 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'vendor/autoload.php'; // Include PHPMailer library
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect form data
-    $email = $_POST['email'];
+    // Check if the form is submitted using the POST method
+
+// Collect form data
     $rating = $_POST['rating'];
-    $opinion = $_POST['opinion'];
+    $feedback_text = $_POST['feedback_text'];
+    
+// Database connection parameters
+$servername = "root@localhost";
+$username = "panditadata";
+$password = "Dubai123!@#";
+$dbname = "mysql";
 
-    // Create a new PHPMailer instance
-    $mail = new PHPMailer(true);
+// Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-    try {
-        // SMTP configuration
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'https://panditadata.com'; // Your email address
-        $mail->Password = ; // Your email password
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
-
-        // Email content
-        $mail->setFrom('panditadata@gmail.com', 'Panditadata');
-        $mail->addAddress('recipient@example.com', 'Recipient Name'); // Email address to receive feedback
-        $mail->isHTML(true);
-        $mail->Subject = 'Feedback from Website';
-        $mail->Body = "Email: $email<br>Rating: $rating<br>Opinion: $opinion";
-
-        // Send email
-        $mail->send();
-        echo 'Feedback sent successfully!';
-    } catch (Exception $e) {
-        echo "Error sending feedback: {$mail->ErrorInfo}";
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
+
+    // Sanitize input (to prevent SQL injection)
+    $rating = $conn->real_escape_string($rating);
+    $feedback_text = $conn->real_escape_string($feedback_text);
+
+    // Insert feedback into database
+    $sql = "INSERT INTO feedback (rating, feedback_text) VALUES ('$rating', '$feedback_text')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Feedback submitted successfully!";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    // Close connection
+    $conn->close();
 }
 ?>
+
