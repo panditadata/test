@@ -19,6 +19,9 @@
    	        <meta property="og:image" content="https://panditadata.com/IMG_4358.PNG">
     <link rel="stylesheet" href="style.css">
     <link rel="canonical" href="https://panditadata.com">
+    <link rel="stylesheet"  type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
 <body>
         <!-- header -->
@@ -26,7 +29,24 @@
         <div class="logo"><a href="https://panditadata.com">Panditadata</a></div>
         <ul class="menu">
             <li><a href="https://panditadata.com">Home</a></li>
-            <li><a href="https://panditadata.com">Blog</a></li>
+            <li><a href="#" id="feedbackLink">Feedback</a></li>
+             <!-- Feedback form -->
+             <li id="feedbackFormContainer">
+                <a href="#" id="feedbackLink">Feedback</a>
+                <form id="feedbackForm" action="submit_feedback.php" method="post">
+                    <label for="rating">Rate Panditadata:</label>
+                    <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+                    </div>
+                    <label for="opinion">Let us know your feedback about Panditadata:</label>
+                    <textarea id="opinion" name="opinion" rows="4" cols="50"></textarea>
+                    <button type="submit">Submit Feedback</button>
+                </form>
+            </li>
             <li><a href="mailto:panditadata@gmail.com" target="_top">Contact</a></li>
         </ul>
         <div class="search">
@@ -35,6 +55,7 @@
             </svg>
         </div>
     </header>
+    <script src="script1.js"></script>
     <!-- slider -->
 
     <div class="slider">
@@ -146,5 +167,7 @@
         </div>
     </div>
     <script src="app.js"></script>
+
+    
 </body>
 </html>

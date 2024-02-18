@@ -187,7 +187,7 @@ body {
 .thumbnail .item iframe{
     width: 275%;
     height: 275%;
-    transform: scale(0.35);
+    transform: scale(0.38);
     transform-origin: top left;
     object-fit: cover;
     border-radius: 10px;
@@ -230,4 +230,108 @@ body {
     transform-origin: top left !important;
     object-fit: cover !important;
     border-radius: 10px !important;
+}
+
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: -140px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #0c00b3;
+}
+
+select, textarea {
+    width: 100%;
+    margin-bottom: auto!important;
+    color: #0c00b3;
+    border: color(srgb red green blue);
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0c00b3;
+}
+       /* Hide the feedback form initially */
+feedbackFormContainer {
+        display: none;
+        position: absolute;
+        top: 50px; /* Adjust as needed */
+        left: 50%;
+        transform: translateX(-50%); /* Center horizontally */
+        background-color: rgb(255, 255, 255);
+        border: 1px solid #cccccc;
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    /* Style the feedback form */
+feedbackFormContainer form {
+        display: flex;
+        flex-direction: column;
+    }
+
+feedbackFormContainer label {
+        margin-bottom: 10px;
+    }
+
+feedbackFormContainer textarea {
+        height: 100px;
+        resize: vertical;
+        margin-bottom: 10px;
+    }
+/* Style the rating select element */
+feedbackFormContainer select {
+    margin-bottom: 10px;
+    color: #0c00b3;
+    border: 1px solid #cccccc; /* Adjust border style as needed */
+    border-radius: 5px; /* Add border-radius if desired */
+    padding: 5px; /* Add padding if desired */
+    background-color: white; /* Add background color if needed */
+}
+
+/* Style the submit button */
+feedbackFormContainer button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.feedbackFormContainer button:hover {
+    background-color: #0c00b3;
+}
+/* Style the rating container */
+.rating {
+    display: inline-block;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+    display: inline-block; /* Display the labels inline */
+    color: #ddd;
+    font-size: 24px;
+    
+}
+
+.rating input:checked ~ label {
+    color: #ffc107; /* Adjust color for selected stars */
 }
