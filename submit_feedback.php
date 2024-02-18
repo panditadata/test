@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'https://panditadata.com'; // Your email address
-        $mail->Password = 'Dubai123!@#'; // Your email password
+        $mail->Password = ; // Your email password
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
