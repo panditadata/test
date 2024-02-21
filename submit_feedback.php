@@ -2,6 +2,8 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the form is submitted using the POST method
 
+
+    $con = mysqli_connect('localhost', 'root', '',’panditadata’);
 // Collect form data
     $rating = $_POST['rating'];
     $feedback_text = $_POST['feedback_text'];
@@ -25,8 +27,14 @@ $dbname = "panditadata";
     $feedback_text = $conn->real_escape_string($feedback_text);
 
     // Insert feedback into database
-    $sql = "INSERT INTO 'panditadata_contact'  (fldrating, fldFeedback) VALUES ('$rating', '$feedback_text')";
+    $sql = "INSERT INTO 'panditadata_contact'  (fldrating, fldFeedback) VALUES ('0','$rating', '$feedback_text')";
 
+
+    $rs = mysqli($con, $sql);
+    if($rs)
+    {
+     echo "Contact Records Inserted";
+    }
     if ($conn->query($sql) === TRUE) {
         echo "Feedback submitted successfully!";
     } else {
