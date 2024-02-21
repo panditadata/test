@@ -25,7 +25,7 @@ $dbname = "panditadata";
     $feedback_text = $conn->real_escape_string($feedback_text);
 
     // Insert feedback into database
-    $sql = "INSERT INTO feedback (rating, feedback_text) VALUES ('$rating', '$feedback_text')";
+    $sql = "INSERT INTO 'panditadata_contact'  (fldrating, fldFeedback) VALUES ('$rating', '$feedback_text')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Feedback submitted successfully!";
