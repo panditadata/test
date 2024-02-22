@@ -1,48 +1,29 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if the form is submitted using the POST method
+// database connection code
+if(isset($_POST['txtName']))
+{
+// $con = mysqli_connect('localhost', 'database_user', 'database_password','database');
+$con = mysqli_connect('localhost', 'root', '','db_connect');
 
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = " ";
-$dbname = "panditadata";
+// get the post records
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}    
-// Collect form data
-$rating = $_POST['rating'];
-$feedback_text = $_POST['feedback_text'];
-    
- // Sanitize input (to prevent SQL injection)
-$rating = $conn->real_escape_string($rating);
-$feedback_text = $conn->real_escape_string($feedback_text);
-
-// Insert feedback into database
-$sql = "INSERT INTO 'panditadata_contact'  (fldrating, fldFeedback) VALUES ('$rating', '$feedback_text')";
+$txtID = $_POST['rating'];
+$txtFeedback = $_POST['opinion'];
 
 
-$rs = mysqli($con, $sql);
+// database insert SQL code
+$sql = "INSERT INTO `panditadata_contact` (`fldRate`, `fldFeedback`) VALUES ('0', '$txtID', '$txtFeedback', '$txtPhone', '$txtMessage')";
+
+// insert in database 
+$rs = mysqli_query($con, $sql);
 if($rs)
 {
-echo "Contact Records Inserted";
+	echo "Contact Records Inserted";
 }
-if ($conn->query($sql) === TRUE) {
-echo "Feedback submitted successfully!";
-} else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
 }
-
-// Close connection
-$conn->close();
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
+else
+{
+	echo "Are you a genuine visitor?";
+	
 }
 ?>
-
