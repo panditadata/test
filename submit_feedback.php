@@ -1,30 +1,27 @@
 <?php
-// database connection code
-if(isset($_POST['txtEmail']))
-{
-// $con = mysqli_connect('localhost', 'database_user', 'database_password','database');
-$con = mysqli_connect('localhost', 'root', '','db_connect');
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect form data
+    $feedback = $_POST['txtMessage'];
 
-// get the post records
+    // Set the recipient email address
+    $to = "panditadata@gmail.com";
 
+    // Set the email subject
+    $subject = "Feedback from Panditadata Website";
 
-$txtEmail = $_POST['txtEmail'];
+    // Set the email message
+    $message = "Feedback: " . $feedback;
 
-$txtMessage = $_POST['txtMessage'];
+    // Set the headers
+    
+   // $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-// database insert SQL code
-$sql = "INSERT INTO `tbl_contact` (`Id`, `fldEmail`, `fldMessage`) VALUES ('0', '$txtEmail', '$txtMessage')";
-
-// insert in database 
-$rs = mysqli_query($con, $sql);
-if($rs)
-{
-	echo "Feedback sent to Panditadata";
-}
-}
-else
-{
-	echo "Panditadata not happy";
-	
+    // Send the email
+    if (mail($to, $subject, $message)) {
+        echo "Feedback submitted successfully, Panditadata is Happy (:!";
+    } else {
+        echo "Error submitting feedback. Panditadata is sad );!";
+    }
 }
 ?>
