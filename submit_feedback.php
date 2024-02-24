@@ -1,29 +1,30 @@
 <?php
 // database connection code
-if(isset($_POST['txtName']))
+if(isset($_POST['txtEmail']))
 {
 // $con = mysqli_connect('localhost', 'database_user', 'database_password','database');
 $con = mysqli_connect('localhost', 'root', '','db_connect');
 
 // get the post records
 
-$txtID = $_POST['rating'];
-$txtFeedback = $_POST['opinion'];
 
+$txtEmail = $_POST['txtEmail'];
+
+$txtMessage = $_POST['txtMessage'];
 
 // database insert SQL code
-$sql = "INSERT INTO `panditadata_contact` (`fldRate`, `fldFeedback`) VALUES ('0', '$txtID', '$txtFeedback', '$txtPhone', '$txtMessage')";
+$sql = "INSERT INTO `tbl_contact` (`Id`, `fldEmail`, `fldMessage`) VALUES ('0', '$txtEmail', '$txtMessage')";
 
 // insert in database 
 $rs = mysqli_query($con, $sql);
 if($rs)
 {
-	echo "Contact Records Inserted";
+	echo "Feedback sent to Panditadata";
 }
 }
 else
 {
-	echo "Are you a genuine visitor?";
+	echo "Panditadata not happy";
 	
 }
 ?>

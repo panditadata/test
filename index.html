@@ -15,7 +15,7 @@
     <meta name="google-site-verification" content="YcTveiQCkLaGlGbB3DjfE2LM7RngWgUDe_qyNnQqcWE" />
     <meta name="robots" content="index, follow">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-	<meta name="description" content="Embark on a data adventure with PanditaData ! 🐼 Explore captivating Jupyter Notebooks, craft mesmerizing time series visualizations, and dance through interactive maps with folium plugins like timestampedGeoJson and HeatmapwithTime. Unleash the power of data in a fun, informative, and visually stunning way. Join us on a journey where data meets creativity! Keywords Folium|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|Lofi 🚀">
+	<meta name="description" content="Embark on a🐼 data adventure with PanditaData !  Explore captivating Jupyter Notebooks, craft mesmerizing time series visualizations, and dance through interactive maps with folium plugins like timestampedGeoJson and HeatmapwithTime. Unleash the power of data in a fun, informative, and visually stunning way. Join us on a journey where data meets creativity! Keywords Folium|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|Lofi 🚀">
    	        <meta property="og:image" content="https://panditadata.com/IMG_4358.PNG">
     <link rel="stylesheet" href="style.css">
     <link rel="canonical" href="https://panditadata.com">
@@ -33,19 +33,20 @@
              <!-- Feedback form -->
              <li id="feedbackFormContainer">
                 <a href="#" id="feedbackLink">Feedback</a>
-                <form id="feedbackForm" action="submit_feedback.php" method="post">
-                    <label for="rating">Rate Panditadata:</label>
-                    <div class="rating">
-                            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
-                            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
-                            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
-                            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
-                            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star"><i class="fas fa-star"></i></label>
-                    </div>
-                    <label for="opinion">Feedback about Panditadata and New map?:</label>
-                    <textarea id="opinion" name="opinion" rows="4" cols="50"></textarea>
-                    <button type="submit">Submit Feedback</button>
-                </form>
+                <form name="frmContact" class="needs-validation " method="post" action="submit_feedback.php">
+                    <p>
+                      <label for="email">Your Feedback about Panditadata</label>
+                      <input type="text"  class="form-control"  name="txtEmail" id="txtEmail" placeholder="Email" value="" required>
+                    </p>
+                    <p>
+                      <label for="message">Suggest Next Map topic. </label>
+                      <textarea name="txtMessage" class="form-control"  id="txtMessage"  placeholder="Message" required></textarea>
+                    </p>
+                   
+                    <p>
+                      <input type="submit" name="Submit" id="Submit" value="Submit Feedback"  class="btn btn-primary btn-lg btn-block">
+                    </p>
+                  </form>
             </li>
             <li><a href="mailto:panditadata@gmail.com" target="_top">Contact</a></li>
         </ul>
