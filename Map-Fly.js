@@ -1,9 +1,16 @@
-var map = L.map('map').setView([0, 0], 3);
-var fullScreen = new L.Control.FullScreen(); 
-map.addControl(fullScreen);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+var mapOptions = {
+    center: [2,2],
+    zoom: 3,
+    dragging: true,
+    doubleClickZoom:true,
+    
+}
+var map = new L.Map('map', mapOptions);
+L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 }).addTo(map);
+
+
 
 var flyIcon = L.Icon.extend({
     options: {
