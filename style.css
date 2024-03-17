@@ -67,8 +67,6 @@ body {
     width: auto !important;
     height: auto !important;
     object-fit: cover;
-    padding: 0 100px;
-    
 }
 .slider .list .item::after{
     content: '';
