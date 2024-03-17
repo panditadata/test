@@ -30,23 +30,15 @@ another_small_airportMarker.bindPopup('Lowell Field');
 var another1_small_airportIcon = L.marker([40.9305992126464, -77.738899230957], {icon: small_airportIcon}).addTo(map);
 another1_small_airportIcon.bindPopup('Bierly(Personal Use) Airport');
 
-var small_airportIcon = L.marker([34.8647994995117, -86.7703018188476], {icon: small_airportIcon}).addTo(map);
-small_airportIcon.bindPopup('Epps Airpark');
+var another2_small_airportIcon = L.marker([34.8647994995117, -86.7703018188476], {icon: small_airportIcon}).addTo(map);
+another2_small_airportIcon.bindPopup('Epps Airpark');
 
 var closedIcon = L.marker([35.6087, -91.254898], {icon: closedIcon}).addTo(map);
 closedIcon.bindPopup('Newport Hospital & Clinic Heliport');
 
-var small_airportIcon = L.marker([34.9428028, -97.8180194], {icon: small_airportIcon}).addTo(map);
-small_airportIcon.bindPopup('Fulton Airport');
-
 var large_airportIcon = L.marker([-9.44338035583496, 147.220001220703], {icon: large_airportIcon}).addTo(map);
 large_airportIcon.bindPopup('Port Moresby Jacksons International Airport');
 
-var small_airportIcon = L.marker([35.3504981994999, -116.888000488], {icon: small_airportIcon}).addTo(map);
-small_airportIcon.bindPopup('Goldstone /Gts/ Airport');
-
-var small_airportIcon = L.marker([39.427188, -121.763427], {icon: small_airportIcon}).addTo(map);
-small_airportIcon.bindPopup('Williams Ag Airport');
 
 var another_helicopterIcon = L.marker([32.7273736, -116.4597417], {icon: helicopterIcon}).addTo(map);
 another_helicopterIcon.bindPopup('Kitchen Creek Helibase Heliport');
