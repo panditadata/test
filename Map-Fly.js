@@ -1,6 +1,6 @@
 var mapOptions = {
-    center: [20,-91.83],
-    zoom: 4,
+    center: [20,0],
+    zoom: 3,
     dragging: true,
     doubleClickZoom:true,
     
