@@ -11,7 +11,6 @@ attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright"
 }).addTo(map);
 
 
-
 var flyIcon = L.Icon.extend({
     options: {
         iconSize: [45, 42] // size of the icon
@@ -28,33 +27,12 @@ var closedIcon = new flyIcon({iconUrl: 'closed airport.JPEG'});
 var helicopterMarker = L.marker([40.07080078125, -74.9336013793945], {icon: helicopterIcon}).addTo(map);
 helicopterMarker.bindPopup('Total Rf Heliport');
 
-var small_airportMarker = L.marker([38.704022, -101.473911], {icon: small_airportIcon}).addTo(map);
-small_airportMarker.bindPopup('Aero B Ranch Airport');
 
-var another_small_airportMarker = L.marker([59.94919968, -151.695999146], {icon: small_airportIcon}).addTo(map);
-another_small_airportMarker.bindPopup('Lowell Field');
-
-var another1_small_airportIcon = L.marker([40.9305992126464, -77.738899230957], {icon: small_airportIcon}).addTo(map);
-another1_small_airportIcon.bindPopup('Bierly(Personal Use) Airport');
-
-var another2_small_airportIcon = L.marker([34.8647994995117, -86.7703018188476], {icon: small_airportIcon}).addTo(map);
-another2_small_airportIcon.bindPopup('Epps Airpark');
-
-var closedIcon = L.marker([35.6087, -91.254898], {icon: closedIcon}).addTo(map);
-closedIcon.bindPopup('Newport Hospital & Clinic Heliport');
-
-var large_airportIcon = L.marker([-9.44338035583496, 147.220001220703], {icon: large_airportIcon}).addTo(map);
-large_airportIcon.bindPopup('Port Moresby Jacksons International Airport');
-
-
-var another_helicopterIcon = L.marker([32.7273736, -116.4597417], {icon: helicopterIcon}).addTo(map);
-another_helicopterIcon.bindPopup('Kitchen Creek Helibase Heliport');
-
-var another_closedIcon = L.marker([40.622202, -104.344002], {icon: closedIcon}).addTo(map);
-another_closedIcon.bindPopup('Cass Field');
 
 // Fullscreen control
 
+var fullScreen = new L.Control.FullScreen(); 
+map.addControl(fullScreen);
 // events are fired when entering or exiting fullscreen.
 map.on('enterFullscreen', function () {
 console.log('entered fullscreen');
