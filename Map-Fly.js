@@ -1,4 +1,6 @@
-var map = L.map('map').setView([0, 0], 2);
+var map = L.map('map').setView([0, 0], 3);
+var fullScreen = new L.Control.FullScreen(); 
+map.addControl(fullScreen);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
@@ -22,13 +24,12 @@ helicopterMarker.bindPopup('Total Rf Heliport');
 var small_airportMarker = L.marker([38.704022, -101.473911], {icon: small_airportIcon}).addTo(map);
 small_airportMarker.bindPopup('Aero B Ranch Airport');
 
-var another_small_airportMarker = L.marker([59.94919968, -151.695999146], {icon: small_airportIcon}).addTo(map);
+var small_airportMarker = L.marker([59.94919968, -151.695999146], {icon: small_airportIcon}).addTo(map);
 another_small_airportMarker.bindPopup('Lowell Field');
 
 
 // Fullscreen control
-var fullScreen = new L.Control.FullScreen(); 
-map.addControl(fullScreen);
+
 // events are fired when entering or exiting fullscreen.
 map.on('enterFullscreen', function () {
 console.log('entered fullscreen');
