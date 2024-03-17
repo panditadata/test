@@ -23,7 +23,7 @@ var large_airportIcon = new flyIcon({iconUrl: 'airplane-joypixels-flying.gif'});
 var medium_airportIcon = new flyIcon({iconUrl: 'landing-touch-down-landing.gif'});
 var small_airportIcon = new flyIcon({iconUrl: 'takeoff-plane with shadow.gif'});
 var seaplane_baseIcon = new flyIcon({iconUrl: 'giphy.gif'});
-var closedIcon = new flyIcon({iconUrl: 'closed airport.JPEG'});
+var closedIcon = new flyIcon({iconUrl: 'closed airport.jpeg'});
 
 var helicopterMarker = L.marker([40.07080078125, -74.9336013793945], {icon: helicopterIcon}).addTo(map);
 helicopterMarker.bindPopup('Total Rf Heliport');
