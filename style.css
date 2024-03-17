@@ -88,7 +88,7 @@ body {
     top: 20%;
     width: 500px;
     max-width: 80%;
-    z-index: 1000000; /* trying to fix the draggable to set it to 100 didnt work */
+    z-index: 1; /* trying to fix the draggable to set it to 100 didnt work */
 }
 .slider .list .item.content iframe{
     position: absolute;
