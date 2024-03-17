@@ -67,6 +67,7 @@ body {
     width: auto !important;
     height: auto !important;
     object-fit: cover;
+    padding: 0 100px;
     
 }
 .slider .list .item::after{
@@ -80,7 +81,17 @@ body {
         to top, #000 10%, transparent
     );
 }
-
+.slider .list .item map::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+        to top, #000 10%, transparent
+    );
+}
 .slider .list .item .content{
     position: absolute;
     left: 10%;
@@ -96,18 +107,18 @@ body {
     width: 500px;
     max-width: 80%;
     z-index: 1;
-    opacity:1;    
+    opacity:1;
     filter: brightness(0.95);
 }
 
 .slider .list .item .content map{
-    position: absolute !important; /* for the buttom full screen to work*/
+    position: absolute !important; /* for the button full screen to work*/
     left: 10%;
     top: 20%;
     width: 500px;
     max-width: 80%;
     z-index: 1; /* trying to fix the draggable to 100  didnt work */
-    opacity:1;    
+    opacity:1;
     filter: brightness(0.95);
 }
 
@@ -413,6 +424,9 @@ feedbackFormContainer button:hover {
     color: #ffc107; /* Adjust color for selected stars */
 }
 .leaflet-control-attribution.leaflet-control {
+    display: none;
+}
+#thumbnail-map .leaflet-control-attribution.leaflet-control {
     display: none;
 }
 /*
