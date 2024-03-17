@@ -3,12 +3,11 @@ var mapOptions = {
     zoom: 3,
     dragging: true,
     doubleClickZoom:true,
-    boxZoom:true
+    
 }
 
 var map = new L.Map('map', mapOptions);
-var fullScreen = new L.Control.FullScreen(); 
-map.addControl(fullScreen);
+
 L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 }).addTo(map);
@@ -20,12 +19,13 @@ options: {
 }
 });
 
-var helicopterIcon = new flyIconIcon({iconUrl: 'pilot-helicopter.gif'}),
-    redIcon = new LeafIcon({iconUrl: 'leaf-red.png'}),
-    orangeIcon = new LeafIcon({iconUrl: 'leaf-orange.png'});
+var helicopterIcon = new flyIcon({iconUrl: 'pilot-helicopter.gif'});
 
-L.marker([51.5, -0.09], {iconUrl: helicopterIcon}).addTo(map);
+L.marker([51.5, -0.09], {icon: helicopterIcon}).addTo(map);
 
+// Fullscreen control
+var fullScreen = new L.Control.FullScreen(); 
+map.addControl(fullScreen);
 // events are fired when entering or exiting fullscreen.
 map.on('enterFullscreen', function () {
 console.log('entered fullscreen');
