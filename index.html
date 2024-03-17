@@ -15,15 +15,16 @@
     <meta name="google-site-verification" content="YcTveiQCkLaGlGbB3DjfE2LM7RngWgUDe_qyNnQqcWE" />
     <meta name="robots" content="index, follow">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-	<meta name="description" content="PanditaData, time series visualizations, interactive maps with folium plugins like timestampedGeoJson and HeatmapwithTime. Keywords Folium|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|Lofi 🚀">
-    <meta property="og:title" content=" Panditadata Maps Data visualizations with Python, JavaScript"> 
-    <meta property="og:description" content="Panditadata Folium, Leafleft Maps Data visualizations Python, JavaScript">
-    <meta property="og:image" content="https://panditadata.com/panditas.png">
-    <meta property="og:url" content="https://panditadata.com"> 
+	<meta name="description" content="Data PanditaData Jupyter Notebooks, time series visualizations, interactive maps with folium plugins like timestampedGeoJson and HeatmapwithTime. Keywords Folium|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|Lofi 🚀">
+   	<meta property="og:image" content="https://panditadata.com/IMG_4358.PNG">
     <link rel="stylesheet" href="style.css">
     <link rel="canonical" href="https://panditadata.com">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
     <link rel="stylesheet" href="Control.FullScreen.css" />
     <script src="Control.FullScreen.js"></script>  
 
@@ -72,9 +73,9 @@
                 <iframe src="image/temperatureworld.html"></iframe>
                 <div class="content">
                     <p>HeatMapwithTime-Interactive Map</p>
-                    <h2>Temperature</h2>
+                    <h2>World Temperature</h2>
                     <p>
-                        Folium Map With To Visualize Average Monthly Temperature since 1743         
+                        Folium Map With HeatMapwithTime To Visualize Average Monthly Temperature since 1743         
                     </p>
                     </div>
             </div>
@@ -84,7 +85,7 @@
                     <p>TimeStampedGeoJson - Dynamic Map</p>
                     <h2>Earthquakes</h2>
                     <p>
-                        Folium Map To Simulate Earthquakes For Last 30 Days        
+                        Folium Map With TimeStampedGeoJson To Simulate Earthquakes For Last 30 Days        
                     </p>
                     </div>
             </div>
@@ -129,19 +130,51 @@
                 </div>
             </div>
             <div class="item">
-            <div id = "map" style = "width: 100%; height: 100%"></div>
-                <script src="Map-FlyE.js"></script>
+              
+              <div id = "map" style = "width: 100%; height: 100%"></div>
+              
+                <script>
+                var mapOptions = {
+                        center: [2,2],
+                        zoom: 3,
+                        dragging: true,
+                        doubleClickZoom:true,
+                        boxZoom:true
+                    }
+               
+                var map = new L.Map('map', mapOptions);
+                var fullScreen = new L.Control.FullScreen(); 
+                map.addControl(fullScreen);
+                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+                    
+               
+                
+
+                // events are fired when entering or exiting fullscreen.
+                map.on('enterFullscreen', function () {
+                    console.log('entered fullscreen');
+                });
+
+                map.on('exitFullscreen', function () {
+                    console.log('exited fullscreen');
+                });
+
+                // you can also toggle fullscreen from map object
+                map.toggleFullscreen();
+                </script>
                 <div class="content">
-                    <p>Leaflet - Work in Progress</p>
-                    <h2>The World</h2>
+                    <p>Leaflet</p>
+                    <h2>E</h2>
                     <p>
-                        Airports and Heliports Java Script HTML
+                        Leaflet Map Java Script HTML
                     </p>
                 </div>
             </div>
             
+              </div>
         </div>
-    </div>
         <!-- button arrows -->
         <div class="arrows">
             <button id="prev"><</button>
@@ -189,27 +222,24 @@
                 <div id="thumbnail-map" style="width: 100%; height: 100%"></div>
                 <!-- JavaScript for the thumbnail map -->
                 
-                
+                <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+                crossorigin=""></script>
                 <script>
                 // Creating map options
                 var thumbnailMapOptions = {
-                            center: [-2,2],
-                            zoom: -5,
-                            scrollWheelZoom: true,
-                            doubleClickZoom:true,
-                            boxZoom:true,
-                            zoomAnimation: true,
-                            markerZoomAnimation: true,
+                            center: [17.385044, 78.486671],
+                            zoom: 3,
+                            scrollWheelZoom: false,
                             fullscreenControl: true
-                }
+                        }
                 
                 // Creating thumbnail map object
                 var thumbnailMap = L.map('thumbnail-map', thumbnailMapOptions);
                     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(thumbnailMap);
-               
-           
+
 
                 </script>
                 <style>
@@ -230,21 +260,16 @@
                         #thumbnail-map .leaflet-control {
                             border: none !important;
                             outline:none !important;
-                            box-shadow: none !important;
-                        }
+                            box-shadow: none !important;}
 
                         #thumbnail-map  {border-radius: 3px !important;}
-                        #thumbnail-map  .leaflet-control-zoom-fullscreen{
-                            width: 12px !important; /* Adjust the width of the buttons */
-                            height: 11px !important; /* Adjust the height of the buttons */
-                            line-height: 10px !important; /* Adjust the line height to vertically center the icon */
-                            font-size: 7px !important; /* Adjust the font size of the icons */
-                            position: relative; /* Ensure the buttons are positioned relative to their container */
-                            top: -6.5px; /* Adjust the top offset to move the buttons upwards */
-                            left: -8px; /* Adjust the left offset to position the buttons */
-                            border: line-style !important; /* Remove the border */
-                            box-shadow: none !important; /* Remove any box-shadow */
-                            outline: outline-style !important; /* Remove any outline */
+                        .thumbnail-map .item.max-zoom map {
+                            width: 500% !important;
+                            height: 500% !important;
+                            transform: scale(0.1) !important;
+                            transform-origin: top left !important;
+                            object-fit: cover !important;
+                            border-radius: 10px !important;
                         }
                 </style>
                 <div class="content">
