@@ -25,8 +25,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link rel="stylesheet" href="Control.FullScreen.css" />
-    <script src="Control.FullScreen.js"></script>  
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.7/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-rc.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-rc.1/leaflet.js"></script>
+    <script src="Control.FullScreen.js"></script>
 </head>
 <body>
         <!-- header -->
@@ -193,14 +196,14 @@
                 <script>
                 // Creating map options
                 var thumbnailMapOptions = {
-                            center: [-2,2],
-                            zoom: -5,
-                            scrollWheelZoom: true,
-                            doubleClickZoom:true,
-                            boxZoom:true,
-                            zoomAnimation: true,
-                            markerZoomAnimation: true,
-                            fullscreenControl: true
+                    center: [37.96,-91.83],
+                    zoom: 3,
+                    scrollWheelZoom: true,
+                    doubleClickZoom:true,
+                    boxZoom:true,
+                    zoomAnimation: true,
+                    markerZoomAnimation: true,
+                    fullscreenControl: true
                 }
                 
                 // Creating thumbnail map object
@@ -208,9 +211,47 @@
                     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(thumbnailMap);
-               
-           
+                var flyIcon = L.Icon.extend({
+                    options: {
+                        iconSize: [35, 32] // size of the icon
+                    }
+                });
 
+                var helicopterIcon = new flyIcon({iconUrl: 'pilot-helicopter.gif'});
+                var large_airportIcon = new flyIcon({iconUrl: 'airplane-joypixels-flying.gif'});
+                var medium_airportIcon = new flyIcon({iconUrl: 'landing-touch-down-landing.gif'});
+                var small_airportIcon = new flyIcon({iconUrl: 'takeoff-plane with shadow.gif'});
+                var seaplane_baseIcon = new flyIcon({iconUrl: 'giphy.gif'});
+                var closedIcon = new flyIcon({iconUrl: 'closed airport.JPEG'});
+
+                var helicopterMarker = L.marker([40.07080078125, -74.9336013793945], {icon: helicopterIcon}).addTo(thumbnailMap);
+                helicopterMarker.bindPopup('Total Rf Heliport');
+
+                var small_airportMarker = L.marker([38.704022, -101.473911], {icon: small_airportIcon}).addTo(thumbnailMap);
+                small_airportMarker.bindPopup('Aero B Ranch Airport');
+
+                var another_small_airportMarker = L.marker([59.94919968, -151.695999146], {icon: small_airportIcon}).addTo(thumbnailMap);
+                another_small_airportMarker.bindPopup('Lowell Field');
+                var another1_small_airportIcon = L.marker([40.9305992126464, -77.738899230957], {icon: small_airportIcon}).addTo(thumbnailMap);
+                another1_small_airportIcon.bindPopup('Bierly(Personal Use) Airport');
+
+                var another2_small_airportIcon = L.marker([34.8647994995117, -86.7703018188476], {icon: small_airportIcon}).addTo(thumbnailMap);
+                another2_small_airportIcon.bindPopup('Epps Airpark');
+
+                var closedIcon = L.marker([35.6087, -91.254898], {icon: closedIcon}).addTo(thumbnailMap);
+                closedIcon.bindPopup('Newport Hospital & Clinic Heliport');
+
+                var large_airportIcon = L.marker([-9.44338035583496, 147.220001220703], {icon: large_airportIcon}).addTo(thumbnailMap);
+                large_airportIcon.bindPopup('Port Moresby Jacksons International Airport');
+
+
+                var another_helicopterIcon = L.marker([32.7273736, -116.4597417], {icon: helicopterIcon}).addTo(thumbnailMap);
+                another_helicopterIcon.bindPopup('Kitchen Creek Helibase Heliport');
+
+                var another_closedIcon = L.marker([40.622202, -104.344002], {icon: closedIcon}).addTo(thumbnailMap);
+                another_closedIcon.bindPopup('Cass Field');
+
+                
                 </script>
                 <style>
                     /* Adjust the size of the zoom control buttons */
