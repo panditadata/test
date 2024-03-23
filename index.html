@@ -27,8 +27,6 @@
     <link rel="stylesheet" href="Control.FullScreen.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.7/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-rc.1/leaflet.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-rc.1/leaflet.js"></script>
     <script src="Control.FullScreen.js"></script>
 </head>
 <body>
@@ -135,10 +133,10 @@
             <div id = "map" style = "width: 100%; height: 100%"></div>
                 <script src="Map-Fly.js"></script>
                 <div class="content">
-                    <p>Leaflet - Work in Progress</p>
-                    <h2>The World</h2>
+                    <p>Leaflet</p>
+                    <h2>Air Heli Ports</h2>
                     <p>
-                        Airports and Heliports Java Script HTML
+                         Leaflet Map JavaScript HTML
                     </p>
                 </div>
             </div>
@@ -222,7 +220,7 @@
                 var medium_airportIcon = new flyIcon({iconUrl: 'landing-touch-down-landing.gif'});
                 var small_airportIcon = new flyIcon({iconUrl: 'takeoff-plane with shadow.gif'});
                 var seaplane_baseIcon = new flyIcon({iconUrl: 'giphy.gif'});
-                var closedIcon = new flyIcon({iconUrl: 'closed airport.jpeg'});
+                var closedIcon = new flyIcon({iconUrl: 'closed airport.JPEG'});
 
                 var helicopterMarker = L.marker([40.07080078125, -74.9336013793945], {icon: helicopterIcon}).addTo(thumbnailMap);
                 helicopterMarker.bindPopup('Total Rf Heliport');
