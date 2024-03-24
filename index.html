@@ -11,7 +11,7 @@
 		</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Folium Map|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|REPL| Web Assembly-powered| Python kernel|Pyodide|Pandas|Earthquakes|Monthly|icons|kawai|slider|auto-play|slider|gradient|map|maps|feature|geometry|type|properties|style|color|icon|fillopacity|stroke|radius|times|add_to|save|coordinates|latitude|longitude|geospatial|solution|data|false|true|period|duration|zoom|expand|zoom in|zoom out|geemap|leaflet|leafmap|iconstyle|class|height|width|zoom_start|min_zoom|max_zoom|max_bounds|no_wrap|geojson_data|add_last_point|add_child|marker|theory of color|intensity|time_slider_drag_update|loop_button|max_speed|</title>
+    <title>Folium Map|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|REPL| Web Assembly-powered| Python kernel|Pyodide|Pandas|Earthquakes|Monthly|icons|kawai|slider|auto-play|slider|gradient|map|maps|feature|geometry|type|properties|style|color|icon|fillopacity|stroke|radius|times|add_to|save|coordinates|latitude|longitude|geospatial|solution|data|false|true|period|duration|zoom|expand|zoom in|zoom out|geemap|leaflet|leafmap|iconstyle|class|height|width|zoom_start|min_zoom|max_zoom|max_bounds|no_wrap|geojson_data|add_last_point|add_child|marker|theory of color|intensity|time_slider_drag_update|loop_button|max_speed||JavaScript|Markers|Icons|Map-Container|Map-Id|LMarker|zoombuttoms|fullscreen buttom|scrollWheelZoom|doubleclickzoom</title>
     <meta name="google-site-verification" content="YcTveiQCkLaGlGbB3DjfE2LM7RngWgUDe_qyNnQqcWE" />
     <meta name="robots" content="index, follow">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
@@ -24,10 +24,9 @@
     <link rel="canonical" href="https://panditadata.com">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <link rel="stylesheet" href="Control.FullScreen.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.7/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
-    <script src="Control.FullScreen.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
+    <script src="https://unpkg.com/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js"></script>
+
 </head>
 <body>
         <!-- header -->
@@ -130,10 +129,13 @@
                 </div>
             </div>
             <div class="item">
-            <div id = "map" style = "width: 100%; height: 100%"></div>
+                <div class="map-container" style="height: 800px;">
+                <div id = "mapId" style = "width: 100%; height: 100%;"></div>
+                </div> 
                 <script src="Map-Fly.js"></script>
-                <div class="content">
-                    <p>Leaflet</p>
+                  
+                    <div class="content">
+                    <p>Leaflet Draggable Icon Helicopter</p>
                     <h2>Air Heli Ports</h2>
                     <p>
                          Leaflet Map JavaScript HTML
@@ -189,8 +191,6 @@
             <div class="item">
                 <div id="thumbnail-map" style="width: 100%; height: 100%"></div>
                 <!-- JavaScript for the thumbnail map -->
-                
-                
                 <script>
                 // Creating map options
                 var thumbnailMapOptions = {
@@ -201,7 +201,7 @@
                     boxZoom:true,
                     zoomAnimation: true,
                     markerZoomAnimation: true,
-                    fullscreenControl: true
+                    
                 }
                 
                 // Creating thumbnail map object
@@ -222,14 +222,15 @@
                 var seaplane_baseIcon = new flyIcon({iconUrl: 'giphy.gif'});
                 var closedIcon = new flyIcon({iconUrl: 'closed airport.JPEG'});
 
-                var helicopterMarker = L.marker([40.07080078125, -74.9336013793945], {icon: helicopterIcon}).addTo(thumbnailMap);
-                helicopterMarker.bindPopup('Total Rf Heliport');
+                var helicopterIcon = L.marker([40.07080078125, -74.9336013793945], {icon: helicopterIcon}).addTo(thumbnailMap);
+                helicopterIcon.bindPopup('Total Rf Heliport');
 
                 var small_airportMarker = L.marker([38.704022, -101.473911], {icon: small_airportIcon}).addTo(thumbnailMap);
                 small_airportMarker.bindPopup('Aero B Ranch Airport');
 
                 var another_small_airportMarker = L.marker([59.94919968, -151.695999146], {icon: small_airportIcon}).addTo(thumbnailMap);
                 another_small_airportMarker.bindPopup('Lowell Field');
+
                 var another1_small_airportIcon = L.marker([40.9305992126464, -77.738899230957], {icon: small_airportIcon}).addTo(thumbnailMap);
                 another1_small_airportIcon.bindPopup('Bierly(Personal Use) Airport');
 
