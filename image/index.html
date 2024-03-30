@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TST1TS96RW"></script>
+		<script>
+		    window.dataLayer = window.dataLayer || [];
+ 		    function gtag(){dataLayer.push(arguments);}
+ 		    gtag('js', new Date());
+  		    gtag('config', 'G-TST1TS96RW');
+		</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folium Map|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|REPL| Web Assembly-powered| Python kernel|Pyodide|Pandas|Earthquakes|Monthly|icons|kawai|slider|auto-play|slider|gradient|map|maps|feature|geometry|type|properties|style|color|icon|fillopacity|stroke|radius|times|add_to|save|coordinates|latitude|longitude|geospatial|solution|data|false|true|period|duration|zoom|expand|zoom in|zoom out|geemap|leaflet|leafmap|iconstyle|class|height|width|zoom_start|min_zoom|max_zoom|max_bounds|no_wrap|geojson_data|add_last_point|add_child|marker|theory of color|intensity|time_slider_drag_update|loop_button|max_speed||JavaScript|Markers|Icons|Map-Container|Map-Id|LMarker|zoombuttoms|fullscreen buttom|scrollWheelZoom|doubleclickzoom</title>
+    <meta name="google-site-verification" content="YcTveiQCkLaGlGbB3DjfE2LM7RngWgUDe_qyNnQqcWE" />
+    <meta name="robots" content="index, follow">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	<meta name="description" content="PanditaData, time series visualizations, interactive maps with folium plugins like timestampedGeoJson and HeatmapwithTime. Keywords Folium|Time Series|TimeStampedGeoJson|HeatmapwithTime|Data Visualization|Interactive Maps| GeoSpatial Analysis|Animations|Jupyter Notebooks| Data Wrangling|Python|Lofi 🚀">
+    <meta property="og:title" content=" Panditadata Maps Data visualizations with Python, JavaScript"> 
+    <meta property="og:description" content="Panditadata Folium, Leafleft Maps Data visualizations Python, JavaScript">
+    <meta property="og:image" content="https://panditadata.com/panditas.png">
+    <meta property="og:url" content="https://panditadata.com"> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://panditadata.com">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
+    <script src="https://unpkg.com/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js"></script>
+
+</head>
+<body>
+        <!-- header -->
+    <header>
+        <div class="logo"><a href="https://panditadata.com">Panditadata</a></div>
+        <ul class="menu">
+            <li><a href="https://panditadata.com">Home</a></li>
+            <li><a href="#" id="feedbackLink">Feedback</a></li>
+             <!-- Feedback form -->
+             <li id="feedbackFormContainer">
+                <a href="#" id="feedbackLink">Feedback</a>
+                <!-- modify this form HTML and place wherever you want your form -->
+            <form
+                action="https://formspree.io/f/mbjnydge"
+                method="POST">
+                <label>
+                How much do you like Panditadata Website
+                <textarea name="message"  placeholder="Rate the Website" ></textarea>
+                </label>
+                <label>
+                Suggest next map topic:
+                <textarea name="message" placeholder="Bees, forests?"></textarea>
+                </label>
+                <!-- your other form fields go here -->
+                <button type="submit">Send Feedback To Panditadata</button>
+                </form>
+            </li>
+            <li><a href="mailto:panditadata@gmail.com" target="_top">Contact</a></li>
+        </ul>
+        <div class="search">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        </div>
+    </header>
+    <script src="script1.js"></script>
+    <!-- slider -->
+
+    <div class="slider">
+        <!-- list Items -->
+        <div class="list">
+            <div class="item active">
+                <iframe src="image/temperatureworld.html"></iframe>
+                <div class="content">
+                    <p>HeatMapwithTime-Interactive Map</p>
+                    <h2>Temperature</h2>
+                    <p>
+                        Folium Map With To Visualize Average Monthly Temperature since 1743         
+                    </p>
+                    </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_mapFFF.html"></iframe>
+                <div class="content">
+                    <p>TimeStampedGeoJson - Dynamic Map</p>
+                    <h2>Earthquakes</h2>
+                    <p>
+                        Folium Map To Simulate Earthquakes For Last 30 Days        
+                    </p>
+                    </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_mapAF.html"></iframe>
+                <div class="content">
+                    <p>Folium - Animation</p>
+                    <h2>America</h2>
+                    <p>
+                        Folium Map With  TimeStampedGeoJson  Maritime Route  1492
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_Merged_Stage.html"></iframe>
+                <div class="content">
+                    <p>Time Series</p>
+                    <h2>Data</h2>
+                    <p>
+                        Some random data displayed. The darker the color, the lowest the %
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/HeatmapwithTime1.html"></iframe>
+                <div class="content">
+                    <p>HeatmapwithTime</p>
+                    <h2>Earthquakes</h2>
+                    <p>
+                        Earthquakes display since 1970 with gradient magnitude
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_map1.html"></iframe>
+                <div class="content">
+                    <p>Folium</p>
+                    <h2>Earthquakes</h2>
+                    <p>
+                        Since 1970. All 
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="map-container" style="height: 1200px;">
+                <div id = "mapId" style = "width: 100%; height: 100%;"></div>
+                </div> 
+                <script src="Map-Fly.js"></script>
+                  
+                    <div class="content">
+                    <p>Leaflet Draggable Icon Helicopter</p>
+                    <h2>Air Heli Ports</h2>
+                    <p>
+                         Leaflet Map JavaScript HTML
+                    </p>
+                </div>
+            </div>
+            <div class="item" >
+                <iframe src="image/mm1.html"></iframe>
+                <div class="content">
+                    <p> Google Map </p>
+                    <h2>Earth Engine</h2>
+                    <p>
+                       Python-Toolbars
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+        <!-- button arrows -->
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+        <!-- thumbnail -->
+        <div class="thumbnail">
+            <div class="item active">
+                <iframe src="image/temperatureworld.html" ></iframe>
+                <div class="content">
+                    HeatMapTime
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_mapFFF.html" ></iframe>
+                <div class="content">
+                    Folium 
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_mapAF.html"></iframe>
+                <div class="content">
+                    Route
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_Merged_Stage.html"></iframe>
+                <div class="content">
+                    Timestamped
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/HeatmapwithTime1.html"></iframe>
+                <div class="content">
+                    HeatMapTime
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/EQ_map1.html"></iframe>
+                <div class="content">
+                    Time Series
+                </div>
+            </div>
+            <div class="item">
+                <div id="thumbnail-map" style="width: 100%; height: 100%"></div>
+                <!-- JavaScript for the thumbnail map -->
+                <script>
+                // Creating map options
+                var thumbnailMapOptions = {
+                    center: [37.96,-91.83],
+                    zoom: 3,
+                    scrollWheelZoom: true,
+                    doubleClickZoom:true,
+                    boxZoom:true,
+                    zoomAnimation: true,
+                    markerZoomAnimation: true,
+                    
+                }
+                
+                // Creating thumbnail map object
+                var thumbnailMap = L.map('thumbnail-map', thumbnailMapOptions);
+                    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(thumbnailMap);
+                var flyIcon = L.Icon.extend({
+                    options: {
+                        iconSize: [35, 32] // size of the icon
+                    }
+                });
+
+                var helicopterIcon = new flyIcon({iconUrl: 'pilot-helicopter.gif'});
+                var large_airportIcon = new flyIcon({iconUrl: 'airplane-joypixels-flying.gif'});
+                var medium_airportIcon = new flyIcon({iconUrl: 'landing-touch-down-landing.gif'});
+                var small_airportIcon = new flyIcon({iconUrl: 'takeoff-plane with shadow.gif'});
+                var seaplane_baseIcon = new flyIcon({iconUrl: 'giphy.gif'});
+                var closedIcon = new flyIcon({iconUrl: 'closedairport.jpeg'});
+
+                var helicopterIcon = L.marker([40.07080078125, -74.9336013793945], {icon: helicopterIcon}).addTo(thumbnailMap);
+                helicopterIcon.bindPopup('Total Rf Heliport');
+
+                var small_airportMarker = L.marker([38.704022, -101.473911], {icon: small_airportIcon}).addTo(thumbnailMap);
+                small_airportMarker.bindPopup('Aero B Ranch Airport');
+
+                var another_small_airportMarker = L.marker([59.94919968, -151.695999146], {icon: small_airportIcon}).addTo(thumbnailMap);
+                another_small_airportMarker.bindPopup('Lowell Field');
+
+                var another1_small_airportIcon = L.marker([40.9305992126464, -77.738899230957], {icon: small_airportIcon}).addTo(thumbnailMap);
+                another1_small_airportIcon.bindPopup('Bierly(Personal Use) Airport');
+
+                var another2_small_airportIcon = L.marker([34.8647994995117, -86.7703018188476], {icon: small_airportIcon}).addTo(thumbnailMap);
+                another2_small_airportIcon.bindPopup('Epps Airpark');
+
+                var closedIcon = L.marker([35.6087, -91.254898], {icon: closedIcon}).addTo(thumbnailMap);
+                closedIcon.bindPopup('Newport Hospital & Clinic Heliport');
+
+                var large_airportIcon = L.marker([-9.44338035583496, 147.220001220703], {icon: large_airportIcon}).addTo(thumbnailMap);
+                large_airportIcon.bindPopup('Port Moresby Jacksons International Airport');
+
+
+                var another_helicopterIcon = L.marker([32.7273736, -116.4597417], {icon: helicopterIcon}).addTo(thumbnailMap);
+                another_helicopterIcon.bindPopup('Kitchen Creek Helibase Heliport');
+
+                var another_closedIcon = L.marker([40.622202, -104.344002], {icon: closedIcon}).addTo(thumbnailMap);
+                another_closedIcon.bindPopup('Cass Field');
+
+                
+                </script>
+                <style>
+                    /* Adjust the size of the zoom control buttons */
+                        #thumbnail-map .leaflet-control-zoom-in,
+                        #thumbnail-map .leaflet-control-zoom-out {
+                            width: 12px !important; /* Adjust the width of the buttons */
+                            height: 11px !important; /* Adjust the height of the buttons */
+                            line-height: 10px !important; /* Adjust the line height to vertically center the icon */
+                            font-size: 6px !important; /* Adjust the font size of the icons */
+                            position: relative; /* Ensure the buttons are positioned relative to their container */
+                            top: -6.5px; /* Adjust the top offset to move the buttons upwards */
+                            left: -8px; /* Adjust the left offset to position the buttons */
+                            border: line-style !important; /* Remove the border */
+                            box-shadow: none !important; /* Remove any box-shadow */
+                            outline: outline-style !important; /* Remove any outline */
+                        }
+                        #thumbnail-map .leaflet-control {
+                            border: none !important;
+                            outline:none !important;
+                            box-shadow: none !important;
+                        }
+
+                        #thumbnail-map  {border-radius: 3px !important;}
+                        #thumbnail-map  .leaflet-control-zoom-fullscreen{
+                            width: 12px !important; /* Adjust the width of the buttons */
+                            height: 11px !important; /* Adjust the height of the buttons */
+                            line-height: 10px !important; /* Adjust the line height to vertically center the icon */
+                            font-size: 7px !important; /* Adjust the font size of the icons */
+                            position: relative; /* Ensure the buttons are positioned relative to their container */
+                            top: -6.5px; /* Adjust the top offset to move the buttons upwards */
+                            left: -8px; /* Adjust the left offset to position the buttons */
+                            border: line-style !important; /* Remove the border */
+                            box-shadow: none !important; /* Remove any box-shadow */
+                            outline: outline-style !important; /* Remove any outline */
+                        }
+                </style>
+                <div class="content">
+                    Leaflet JS
+                </div>
+            </div>
+            <div class="item">
+                <iframe src="image/mm1.html"></iframe>
+                <div class="content">
+                    Time Series
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
