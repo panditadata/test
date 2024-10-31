@@ -131,9 +131,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </header>
        <script>
         const mockData = [
-            { title: "Earthquake Map", technology: "Leaflet", features: ["heatmap"], topic: "Earthquakes" },
-            { title: "Route Map", technology: "Folium", features: ["basemaps"], topic: "Routes" },
-            { title: "Weather Heatmap", technology: "Geemap", features: ["timestampgeojson"], topic: "Weather" },
+            { title: "Earthquake Map", technology: "Heatmap", features: ["Time Animation"], topic: "Earthquakes" ,url: "image/EQ_mapFFF.html"},
+            { title: "Maritime Route", technology: "Folium", features: ["Maritime Route Calculation"], topic: "Routes", url:"image/EQ_mapAF.html" },
+            { title: "Weather Temperature", technology: "Heatmap", features: ["Time Animation"], topic: "Temperature", url:"image/temperatureworld.html" },
+	    { title: "Data", technology: "Folium", features: ["Data Animation"], topic: "Data", url:"image/EQ_Merged_Stage.html" },
             // Add more static mock entries as needed
         ];
 
@@ -500,7 +501,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             </div>
         </div>
-    </div>
+    </div>	
     <script src="app.js"></script>
 </body>
 </html>
