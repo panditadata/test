@@ -134,26 +134,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             // Add more static mock entries as needed
         ];
 
-        function fetchResults(query) {
-            const suggestions = document.getElementById("suggestions");
-            suggestions.innerHTML = '';  // Clear previous results
-
-            if (query.length < 2) return;  // Only search for queries with 2+ chars
-
-            // Filter and display results by matching title or topic
-            const results = mockData.filter(item => 
-                item.title.toLowerCase().includes(query.toLowerCase()) ||
-                item.topic.toLowerCase().includes(query.toLowerCase())
-            );
-
-            results.forEach(item => {
-                const div = document.createElement("div");
-                div.className = "suggestion-item";
-                div.textContent = `${item.title} (${item.technology}) - ${item.topic}`;
-                suggestions.appendChild(div);
-            });
-        }
-    </script>	
+    
     <script src="script1.js"></script>
     <!-- slider -->
 
@@ -506,7 +487,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             if (query.length < 2) return;
 
-            const results = mapData.filter(map => 
+            const results = mockData.filter(map => 
                 map.title.toLowerCase().includes(query.toLowerCase()) ||
                 map.technology.toLowerCase().includes(query.toLowerCase()) ||
                 map.features.some(feature => feature.toLowerCase().includes(query.toLowerCase())) ||
