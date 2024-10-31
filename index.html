@@ -39,7 +39,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
     <script src="https://unpkg.com/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js"></script>
-
+    <style>
+        #search-box { width: 100%; padding: 8px; margin: 10px 0; }
+        #suggestions { border: 1px solid #ddd; max-height: 200px; overflow-y: auto; }
+        .suggestion-item { padding: 8px; cursor: pointer; }
+        .suggestion-item:hover { background-color: #f0f0f0; }
+    </style>
 </head>
 <body>
 	<!-- Google Tag Manager (noscript) -->
@@ -78,8 +83,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
+	    <input type="text" id="search-box" placeholder="Search maps..." oninput="fetchResults(this.value)" />
+            <div id="suggestions"></div>
         </div>
     </header>
+       <script>
+        const mockData = [
+            { title: "Earthquake Map", technology: "Leaflet", features: ["heatmap"], topic: "Earthquakes" },
+            { title: "Route Map", technology: "Folium", features: ["basemaps"], topic: "Routes" },
+            { title: "Weather Heatmap", technology: "Geemap", features: ["timestampgeojson"], topic: "Weather" },
+            // Add more static mock entries as needed
+        ];
+
+        function fetchResults(query) {
+            const suggestions = document.getElementById("suggestions");
+            suggestions.innerHTML = '';  // Clear previous results
+
+            if (query.length < 2) return;  // Only search for queries with 2+ chars
+
+            // Filter and display results by matching title or topic
+            const results = mockData.filter(item => 
+                item.title.toLowerCase().includes(query.toLowerCase()) ||
+                item.topic.toLowerCase().includes(query.toLowerCase())
+            );
+
+            results.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "suggestion-item";
+                div.textContent = `${item.title} (${item.technology}) - ${item.topic}`;
+                suggestions.appendChild(div);
+            });
+        }
+    </script>	
     <script src="script1.js"></script>
     <!-- slider -->
 
