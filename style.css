@@ -184,7 +184,7 @@ body {
     height: 40px;
     border-radius: 5px;
     font-size: x-large;
-    color: #eee;
+    color: #444444;
     transition: .5s;
 }
 .arrows button:hover{
