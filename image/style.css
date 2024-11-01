@@ -2,8 +2,8 @@
 body{
     font-family: Poppins;
     margin: 0;
-    background-color: #010101;
-    color: #eeeeee;
+    background-color: #121212;
+    color: #e0e0e0;
 }
 svg{
     width: 25px;
@@ -76,7 +76,9 @@ body {
     left: 0;
     bottom: 0;
     background-image: linear-gradient(
-        to top, #000 0.1%, transparent
+        to top, 
+        rgba(0, 0, 0, 0.6), 
+        transparent
     );
 } 
 
