@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood in Valencia ànim! coratge!.</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* Map Container */
+        #map { height: 600px; position: relative; }
+
+        /* Control Buttons */
+        .controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+        .controls button {
+            padding: 10px 15px;
+            margin-right: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Maximum Flood Label */
+        .max-flood-label {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            color: blue;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        /* Rain Effect */
+        .rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 999; /* Place raindrops on top of map elements */
+        }
+        .raindrop {
+            position: absolute;
+            background-color: rgba(0, 0, 255, 0.6);
+            border-radius: 50%;
+            width: 8px;
+            height: 8px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(600px); opacity: 0; }
+        }
+
+        /* Water Flow Effect */
+        .water-flow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(120deg, rgba(0, 0, 255, 0.3), rgba(0, 0, 255, 0.1), rgba(0, 0, 255, 0.3));
+            background-size: 200% 200%;
+            animation: waterFlow 8s infinite linear;
+            z-index: 998; /* Place the water flow under raindrops but above flood zones */
+        }
+
+        @keyframes waterFlow {
+            from { background-position: 0 0; }
+            to { background-position: 200% 200%; }
+        }
+    </style>
+</head>
+<body>
+    <h2>Flood in Valencia ànim! coratge!.</h2>
+    <div id="map"></div>
+    <div class="max-flood-label">🚨 Turia River Maximum Flood: 3700 liters/sec. 🚨 491 litres per square metre accumulated in eight hours.</div> <!-- Static label for max flood -->
+    <div class="rain" id="rainLayer"></div> <!-- Rain layer for raindrop effects -->
+    <div class="water-flow" id="waterFlowLayer"></div> <!-- Water flow effect overlay -->
+    <div class="controls">
+        <button id="playButton">Play</button>
+        <button id="stopButton">Stop</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Center the map to cover southern Valencia
+        const map = L.map('map').setView([39.4, -0.4], 13);
+
+        // Set up the OpenStreetMap layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Define mini squares in the southern area (Alfafar, Catarroja, Paiporta)
+        const floodSquares = [
+            // Southern Area with Slower Growth
+            { bounds: [[39.42, -0.42], [39.425, -0.415]], overlay: null, growthRate: 0.0003 },
+            { bounds: [[39.43, -0.42], [39.435, -0.415]], overlay: null, growthRate: 0.0003 },
+            { bounds: [[39.42, -0.41], [39.425, -0.405]], overlay: null, growthRate: 0.0002 },
+            { bounds: [[39.43, -0.41], [39.435, -0.405]], overlay: null, growthRate: 0.0003 },
+            { bounds: [[39.42, -0.4], [39.425, -0.395]], overlay: null, growthRate: 0.0002 },
+            { bounds: [[39.43, -0.4], [39.435, -0.395]], overlay: null, growthRate: 0.0003 },
+            { bounds: [[39.44, -0.42], [39.445, -0.415]], overlay: null, growthRate: 0.0002 },
+            { bounds: [[39.44, -0.41], [39.445, -0.405]], overlay: null, growthRate: 0.0003 }
+        ];
+
+        // Initialize flood squares on the map with low opacity
+        floodSquares.forEach(square => {
+            square.overlay = L.rectangle(square.bounds, {
+                color: "blue",
+                fillColor: "blue",
+                fillOpacity: 0.3
+            }).addTo(map);
+        });
+
+        // Basic flooding effect settings
+        let floodOpacity = 0.3;  // Start with low opacity
+        let floodExpansion = 0;  // Radius expansion per update
+        const maxOpacity = 0.8;
+
+        function updateFlooding() {
+            floodOpacity = Math.min(floodOpacity + 0.1, maxOpacity);  // Increase up to max opacity
+
+            floodSquares.forEach(square => {
+                floodExpansion = Math.min(floodExpansion + square.growthRate, square.growthRate * 10);  // Limit each square's expansion
+
+                const expandedBounds = [
+                    [square.bounds[0][0] - floodExpansion, square.bounds[0][1] - floodExpansion],
+                    [square.bounds[1][0] + floodExpansion, square.bounds[1][1] + floodExpansion]
+                ];
+                square.overlay.setBounds(expandedBounds);
+                square.overlay.setStyle({ fillOpacity: floodOpacity });
+            });
+
+            // Update raindrop intensity based on flood level
+            createRaindrops(floodOpacity * 100);  // Scale the number of raindrops
+        }
+
+        // Create raindrops based on intensity
+        const rainLayer = document.getElementById("rainLayer");
+
+        function createRaindrops(intensity) {
+            rainLayer.innerHTML = "";  // Clear previous raindrops
+
+            for (let i = 0; i < intensity; i++) {
+                const raindrop = document.createElement("div");
+                raindrop.className = "raindrop";
+                raindrop.style.left = `${Math.random() * 100}vw`;
+                raindrop.style.animationDuration = `${Math.random() * 0.5 + 0.5}s`;
+                rainLayer.appendChild(raindrop);
+            }
+        }
+
+        let intervalId;
+        function startSimulation() {
+            if (!intervalId) {
+                intervalId = setInterval(updateFlooding, 1000);  // Update flooding and raindrops every second
+            }
+        }
+
+        function stopSimulation() {
+            clearInterval(intervalId);
+            intervalId = null;
+            floodOpacity = 0.3;  // Reset opacity
+            floodExpansion = 0;  // Reset expansion
+            rainLayer.innerHTML = "";  // Clear raindrops
+            floodSquares.forEach(square => {
+                square.overlay.setBounds(square.bounds);
+                square.overlay.setStyle({ fillOpacity: floodOpacity });
+            });
+        }
+
+        document.getElementById("playButton").addEventListener("click", startSimulation);
+        document.getElementById("stopButton").addEventListener("click", stopSimulation);
+    </script>
+</body>
+</html>
