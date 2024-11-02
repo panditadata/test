@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Valencia DANA Event Video Overlay</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 1000px;"></div>
+
+    <script>
+        // Initialize the map centered on Valencia
+        var map = L.map('map').setView([39.4699, -0.3763], 10);
+
+        // Add a tile layer (OpenStreetMap tiles)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Define the video URL (replace with your compiled video URL)
+        var videoUrl = "https://panditadata.com/image/DanaD.mp4"
+
+        // Define the bounds for the video overlay (adjust to fit Valencia)
+        var bounds = [[39.6, -0.5], [39.3, -0.2]];
+
+        // Add the video overlay to the map
+        L.videoOverlay(videoUrl, bounds, {
+            opacity: 0.8,
+            autoplay: true,
+            loop: true,
+            muted: true
+        }).addTo(map);
+
+        // Fit the map to the video bounds
+        map.fitBounds(bounds);
+    </script>
+</body>
+</html>
