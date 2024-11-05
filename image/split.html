@@ -4,7 +4,7 @@
   <title>Split Map with TIFF Images</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/geotiff"></script> 
+  <script src="https://unpkg.com/geotiff@latest/dist/geotiff.min.js"></script> 
   <style>
     html, body, #map {
       height: 100%;
@@ -27,20 +27,31 @@
       const image1Url = 'https://panditadata.com/image/image_georeferencedB.tiff';
       const image2Url = 'https://panditadata.com/image/image_georeferencedG.tiff';
 
-      // Load TIFF images using GeoTIFF.js
-      const image1 = await GeoTIFF.fromUrl(image1Url);
-      const image2 = await GeoTIFF.fromUrl(image2Url);
+      try {
+        // Load TIFF images using GeoTIFF.js (await the promises)
+        const image1 = await GeoTIFF.fromUrl(image1Url);
+        const image2 = await GeoTIFF.fromUrl(image2Url);
 
-      // Create Leaflet image overlays from the TIFF data
-      const image1Layer = L.imageOverlay(image1.getImage(), image1.getBoundingBox());
-      const image2Layer = L.imageOverlay(image2.getImage(), image2.getBoundingBox());
+        // Get image data and bounding boxes
+        const image1Data = await image1.getImage();
+        const image2Data = await image2.getImage();
+        const image1Bounds = image1.getBoundingBox();
+        const image2Bounds = image2.getBoundingBox();
 
-      // Add layers to the map
-      map.addLayer(image1Layer);
-      map.addLayer(image2Layer);
+        // Create Leaflet image overlays
+        const image1Layer = L.imageOverlay(image1Data, image1Bounds);
+        const image2Layer = L.imageOverlay(image2Data, image2Bounds);
 
-      // Use leaflet.sync to create the split map view (requires separate plugin)
-      L.control.sideBySide(image1Layer, image2Layer).addTo(map); 
+        // Add layers to the map
+        map.addLayer(image1Layer);
+        map.addLayer(image2Layer);
+
+        // Use leaflet.sync for split map (if needed, include leaflet.sync plugin)
+        // L.control.sideBySide(image1Layer, image2Layer).addTo(map); 
+
+      } catch (error) {
+        console.error('Error loading or parsing TIFF images:', error);
+      }
     }
 
     createMap();
