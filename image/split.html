@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Split Map with TIFF Images</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/geotiff"></script> 
+  <style>
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+    }
+    .leaflet-sbs { /* Adjust split bar width as needed */
+      border-left: 3px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script>
+    async function createMap() {
+      // Create Leaflet map
+      const map = L.map('map').setView([39.47, -0.38], 12); // Valencia coordinates
+
+      // URLs to your TIFF images (make sure they are publicly accessible)
+      const image1Url = 'https://panditadata.com/image/image_georeferencedB.tiff';
+      const image2Url = 'https://panditadata.com/image/image_georeferencedG.tiff';
+
+      // Load TIFF images using GeoTIFF.js
+      const image1 = await GeoTIFF.fromUrl(image1Url);
+      const image2 = await GeoTIFF.fromUrl(image2Url);
+
+      // Create Leaflet image overlays from the TIFF data
+      const image1Layer = L.imageOverlay(image1.getImage(), image1.getBoundingBox());
+      const image2Layer = L.imageOverlay(image2.getImage(), image2.getBoundingBox());
+
+      // Add layers to the map
+      map.addLayer(image1Layer);
+      map.addLayer(image2Layer);
+
+      // Use leaflet.sync to create the split map view (requires separate plugin)
+      L.control.sideBySide(image1Layer, image2Layer).addTo(map); 
+    }
+
+    createMap();
+  </script>
+</body>
+</html>
