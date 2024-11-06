@@ -52,18 +52,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <title>Fun Maps - PanditaData</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link to your CSS file -->
-    <style>/* General Styles */
+<style>/* General Styles */
 /* General Styles */
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7; /* Soft, light background */
-    color: #333; /* Dark gray text for readability */
+    background-color: #f7faff; /* Soft sky-blue background */
+    color: #333;
 }
 
 /* Header Styles */
 header {
-    background-color: #444; /* Dark gray for a professional look */
+    background-color: #ff6f61; /* Bright coral for a cheerful vibe */
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -72,6 +72,7 @@ header {
 header h1 {
     margin: 0;
     font-size: 36px;
+    color: #ffedbc;
 }
 
 header p {
@@ -80,21 +81,22 @@ header p {
 }
 
 header nav a {
-    color: #ddd;
+    color: #ffedbc;
     margin: 0 15px;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
 header nav a.active, header nav a:hover {
-    color: #fff; /* White for the active and hover link states */
+    color: #ffedd6;
 }
 
 /* Tab Navigation Styles */
 .tab-container {
     display: flex;
     justify-content: center;
-    background-color: #555;
+    background-color: #f4a261; /* Soft orange */
 }
 
 .tab-button {
@@ -102,20 +104,25 @@ header nav a.active, header nav a:hover {
     border: none;
     padding: 15px 25px;
     cursor: pointer;
-    color: #ddd;
+    color: #fff;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-.tab-button:hover, .tab-button.active {
-    background-color: #666; /* Slightly darker gray on hover */
+.tab-button:hover {
+    background-color: #ffb3a7; /* Lighter coral on hover */
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.tab-button.active {
+    background-color: #ff6f61; /* Coral to indicate active tab */
 }
 
 /* Tab Content Styles */
 .tab-content {
     display: none;
     padding: 40px 20px;
-    background-color: #fff;
+    background-color: #fdf5e6; /* Light beige for content background */
 }
 
 .tab-content.active {
@@ -130,39 +137,63 @@ header nav a.active, header nav a:hover {
 }
 
 .card {
-    background-color: #e0e0e0; /* Light gray for card background */
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    background-color: #fff; /* White for clean contrast */
+    border: 2px solid #ffb3a7;
+    border-radius: 15px;
     margin: 15px;
     width: 250px;
     overflow: hidden;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s, box-shadow 0.4s;
     cursor: pointer;
+    position: relative;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px) scale(1.05); /* Lift and zoom effect */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
 }
 
 .card img {
     width: 100%;
     height: 150px;
     object-fit: cover;
+    transition: opacity 0.3s;
+}
+
+.card:hover img {
+    opacity: 0.85;
 }
 
 .card h3 {
     margin: 15px 0 5px;
-    font-size: 20px;
-    color: #333;
+    font-size: 22px;
+    color: #ff6f61;
 }
 
 .card p {
     padding: 0 15px 15px;
-    color: #555;
+    color: #666;
     font-size: 14px;
+}
+
+/* Shiny Hover Effect for Cards */
+.card::after {
+    content: '';
+    position: absolute;
+    top: -75%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(45deg);
+    transition: all 0.5s ease-in-out;
+}
+
+.card:hover::after {
+    left: 120%;
+    transition: all 0.5s ease-in-out;
 }
 
 /* Modal Styles */
@@ -191,7 +222,7 @@ header nav a.active, header nav a:hover {
 }
 
 .close-button {
-    color: #333;
+    color: #ff6f61;
     position: absolute;
     top: 15px;
     right: 25px;
@@ -204,6 +235,14 @@ header nav a.active, header nav a:hover {
     width: 100%;
     height: 100%;
     border: none;
+}
+/* Embedded iframes within Cards */
+.map-frame {
+    width: 100%;
+    height: 200px; /* Adjust this height based on how much of the map you want visible in the card */
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px; /* Adds space between iframe and card text */
 }
 
 /* Footer Styles */
@@ -227,7 +266,6 @@ footer {
     }
 }
 
-}
 </style>
 </head>
 <body>
@@ -255,14 +293,14 @@ footer {
         <!-- Map Cards for Roblox Worlds -->
         <div class="card-grid">
             <!-- Map Card 1 -->
-            <div class="card" data-map="path/to/roblox-map1.html">
-                <img src="path/to/roblox-map1-thumbnail.jpg" alt="Roblox Map 1">
+            <div class="card">
+                  <iframe src="image/roblox1.html" alt="Roblox Map 1"  class="map-frame"></iframe> 
                 <h3>Adventure Island</h3>
                 <p>Embark on an epic Roblox adventure!</p>
             </div>
             <!-- Map Card 2 -->
-            <div class="card" data-map="path/to/roblox-map2.html">
-                <img src="path/to/roblox-map2-thumbnail.jpg" alt="Roblox Map 2">
+            <div class="card">
+                 <iframe src="image/roblox2.html" title="Roblox Map 2" class="map-frame"></iframe> 
                 <h3>City Builder</h3>
                 <p>Create your own metropolis!</p>
             </div>
