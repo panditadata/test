@@ -274,21 +274,27 @@ footer {
         <button class="tab-button" data-tab="educational">Educational Maps</button>
         <button class="tab-button" data-tab="more">More Fun Maps</button>
     </div>
-
+<!-- Modal Structure for Displaying Map in Overlay -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <iframe id="map-iframe" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
   <!-- Tab Content -->
 <div class="tab-content active" id="roblox">
     <!-- Map Cards for Roblox Worlds -->
  <div class="card-grid">
    <!-- Map Card 1 -->
         <div class="card" onclick="openModal('roblox1')">
-            <iframe src="roblox1" title="Roblox Map 1" class="map-frame"></iframe>
+            <iframe src="roblox1.html" title="Roblox Map 1" class="map-frame"></iframe>
             <h3>Adventure Island</h3>
             <p>Embark on an epic Roblox adventure!</p>
         </div>
 
         <!-- Map Card 2 -->
         <div class="card" onclick="openModal('roblox2')">
-            <iframe src="roblox2" title="Roblox Map 2" class="map-frame"></iframe>
+            <iframe src="roblox2.html" title="Roblox Map 2" class="map-frame"></iframe>
             <h3>City Builder</h3>
             <p>Create your own metropolis!</p>
         </div>
