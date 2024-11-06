@@ -270,25 +270,31 @@ footer {
         <button class="tab-button" data-tab="more">More Fun Maps</button>
     </div>
 
-    <!-- Tab Content -->
-    <div class="tab-content active" id="roblox">
-        <!-- Map Cards for Roblox Worlds -->
-        <div class="card-grid">
-            <!-- Map Card 1 -->
-            <div class="card">
-                  <iframe src="https://panditadata.com/roblox1" alt="Roblox Map 1"  class="map-frame"></iframe> 
+  <!-- Tab Content -->
+<div class="tab-content active" id="roblox">
+    <!-- Map Cards for Roblox Worlds -->
+    <div class="card-grid">
+        <!-- Map Card 1 -->
+        <div class="card">
+            <!-- Wrapping the iframe and content in an anchor tag for clickable navigation -->
+            <a href="https://panditadata.com/roblox1" target="_blank" style="text-decoration: none; color: inherit;">
+                <iframe src="https://panditadata.com/roblox1" title="Roblox Map 1" class="map-frame"></iframe> 
                 <h3>Adventure Island</h3>
                 <p>Embark on an epic Roblox adventure!</p>
-            </div>
-            <!-- Map Card 2 -->
-            <div class="card">
-                 <iframe src="https://panditadata.com/roblox2" title="Roblox Map 2" class="map-frame"></iframe> 
+            </a>
+        </div>
+        
+        <!-- Map Card 2 -->
+        <div class="card">
+            <a href="https://panditadata.com/roblox2" target="_blank" style="text-decoration: none; color: inherit;">
+                <iframe src="https://panditadata.com/roblox2" title="Roblox Map 2" class="map-frame"></iframe> 
                 <h3>City Builder</h3>
                 <p>Create your own metropolis!</p>
-            </div>
-            <!-- Add more map cards as needed -->
+            </a>
         </div>
+        <!-- Add more map cards as needed -->
     </div>
+</div>
 
     <div class="tab-content" id="fantasy">
         <!-- Map Cards for Fantasy Maps -->
