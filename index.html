@@ -169,7 +169,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         
 	 <!-- External Link Button -->
 	
-        <a href="https://www.panditanimation.com" class="main-button" target="_blank">Live Earthquakes</a>    
+        <a href="https://www.panditanimation.com" class="main-button" target="_blank">Panditadata</a>    
         <a href="ai-ml-portfolio.html" class="main-button">AI & ML Portfolio</a>
         <a href="marsoncall.html" class="main-button">Marsoncall</a>
 	<a href="fun-maps.html" class="main-button">Fun Maps</a>    
@@ -179,9 +179,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
 <!-- header -->
     <header>
-        <div class="logo"><a href="https://panditadata.com" class="main-button">Panditadata</a></div>
-        <ul class="menu">
-            <li><a href="https://panditadata.com" class="main-button">Home</a></li>
+      
+           
             
              <!-- Feedback form -->
              <div class="feedback-container">
@@ -616,6 +615,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
     </script>
     <!-- External Script References -->
+     <!-- JavaScript to Toggle Feedback Form Visibility -->
+    <script>
+        document.getElementById('feedbackLink').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            const feedbackFormContainer = document.getElementById('feedbackFormContainer');
+            feedbackFormContainer.style.display = 
+                feedbackFormContainer.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>	
     <script src="script1.js"></script>	
     <script src="app.js"></script>
 </body>
