@@ -237,7 +237,12 @@ header nav a.active, header nav a:hover {
     height: 100%;
     border: none;
 }
-
+.map-frame {
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 8px;
+}
 /* Footer Styles */
 footer {
     background-color: #4db6ac; /* Match with tab-container for harmony */
@@ -273,24 +278,20 @@ footer {
   <!-- Tab Content -->
 <div class="tab-content active" id="roblox">
     <!-- Map Cards for Roblox Worlds -->
-    <div class="card-grid">
-   <!-- Map Card 1 with relative path in iframe -->
-<a href="roblox1" target="_blank" class="card-link">
-    <div class="card">
-        <iframe src="roblox1" title="Roblox Map 1" class="map-frame"></iframe>
-        <h3>Adventure Island</h3>
-        <p>Embark on an epic Roblox adventure!</p>
-    </div>
-</a>
+ <div class="card-grid">
+        <!-- Map Card 1 -->
+        <div class="card">
+            <iframe src="/roblox1" title="Roblox Map 1" class="map-frame"></iframe>
+            <h3>Adventure Island</h3>
+            <p>Embark on an epic Roblox adventure!</p>
+        </div>
 
-<!-- Map Card 2 with relative path in iframe -->
-<a href="roblox2" target="_blank" class="card-link">
-    <div class="card">
-        <iframe src="roblox2" title="Roblox Map 2" class="map-frame"></iframe>
-        <h3>City Builder</h3>
-        <p>Create your own metropolis!</p>
-    </div>
-</a>
+        <!-- Map Card 2 -->
+        <div class="card">
+            <iframe src="/roblox2" title="Roblox Map 2" class="map-frame"></iframe>
+            <h3>City Builder</h3>
+            <p>Create your own metropolis!</p>
+        </div>
     </div>
 </div>
 
