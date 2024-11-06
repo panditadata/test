@@ -1,20 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M75GGT48');</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCMGKMFMQH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SCMGKMFMQH');
+</script>
+
+<!-- TikTok Pixel Code -->
+<script>
+    !function (w, d, t) {
+        w.TiktokAnalyticsObject = t;
+        var ttq = w[t] = w[t] || [];
+        ttq.methods = ["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+        ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } };
+        for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+        ttq.instance = function (t) { var e = ttq._i[t] || []; return e.push.apply(e, arguments), ttq._i[t] = e, e };
+        ttq.load = function (e, n) {
+            var i = "https://analytics.tiktok.com/i18n/pixel/events.js";
+            ttq._i = ttq._i || {};
+            ttq._i[e] = [];
+            ttq._i[e]._u = i;
+            ttq._t = ttq._t || {};
+            ttq._t[e] = +new Date;
+            ttq._o = ttq._o || {};
+            ttq._o[e] = n || {};
+            var o = document.createElement("script");
+            o.type = "text/javascript";
+            o.async = !0;
+            o.src = i + "?sdkid=" + e + "&lib=" + t;
+            var a = document.getElementsByTagName("script")[0];
+            a.parentNode.insertBefore(o, a)
+        };
+        ttq.load('CSIBRKRC77U8G0CRBM20');
+        ttq.page();
+    }(window, document, 'ttq');
+</script>
+<!-- End TikTok Pixel Code -->
     <meta charset="UTF-8">
     <title>Fun Maps - PanditaData</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link to your CSS file -->
     <style>/* General Styles */
+/* General Styles */
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f7f7f7; /* Soft, light background */
+    color: #333; /* Dark gray text for readability */
 }
 
 /* Header Styles */
 header {
-    background-color: #333;
+    background-color: #444; /* Dark gray for a professional look */
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -27,24 +76,25 @@ header h1 {
 
 header p {
     margin: 5px 0 15px;
+    font-size: 16px;
 }
 
 header nav a {
-    color: #fff;
+    color: #ddd;
     margin: 0 15px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
 }
 
-header nav a.active {
-    text-decoration: underline;
+header nav a.active, header nav a:hover {
+    color: #fff; /* White for the active and hover link states */
 }
 
 /* Tab Navigation Styles */
 .tab-container {
     display: flex;
     justify-content: center;
-    background-color: #444;
+    background-color: #555;
 }
 
 .tab-button {
@@ -52,17 +102,13 @@ header nav a.active {
     border: none;
     padding: 15px 25px;
     cursor: pointer;
-    color: #fff;
+    color: #ddd;
     font-size: 16px;
     transition: background-color 0.3s;
 }
 
-.tab-button:hover {
-    background-color: #555;
-}
-
-.tab-button.active {
-    background-color: #007bff;
+.tab-button:hover, .tab-button.active {
+    background-color: #666; /* Slightly darker gray on hover */
 }
 
 /* Tab Content Styles */
@@ -84,21 +130,21 @@ header nav a.active {
 }
 
 .card {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #e0e0e0; /* Light gray for card background */
+    border: 1px solid #ccc;
     border-radius: 10px;
     margin: 15px;
     width: 250px;
     overflow: hidden;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card img {
@@ -110,29 +156,15 @@ header nav a.active {
 .card h3 {
     margin: 15px 0 5px;
     font-size: 20px;
+    color: #333;
 }
 
 .card p {
     padding: 0 15px 15px;
-    color: #666;
+    color: #555;
     font-size: 14px;
 }
-.card::after {
-    content: '';
-    position: absolute;
-    top: -75%;
-    left: -75%;
-    width: 50%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(45deg);
-    transition: all 0.5s ease-in-out;
-}
 
-.card:hover::after {
-    left: 120%;
-    transition: all 0.5s ease-in-out;
-}
 /* Modal Styles */
 .modal {
     display: none;
@@ -143,7 +175,7 @@ header nav a.active {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
@@ -159,7 +191,7 @@ header nav a.active {
 }
 
 .close-button {
-    color: #fff;
+    color: #333;
     position: absolute;
     top: 15px;
     right: 25px;
@@ -176,7 +208,7 @@ header nav a.active {
 
 /* Footer Styles */
 footer {
-    background-color: #333;
+    background-color: #444;
     color: #fff;
     padding: 15px;
     text-align: center;
@@ -193,6 +225,8 @@ footer {
     .card {
         width: 90%;
     }
+}
+
 }
 </style>
 </head>
