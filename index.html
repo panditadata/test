@@ -128,40 +128,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);	
 }
 
-/* Main Button Styles */
+/* Main Button Styling with Gradient, Glow, and Hover Effects */
 .main-button {
+    display: inline-block;
     padding: 12px 24px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #ffffff;
-    background: linear-gradient(145deg, #6b8cff, #8bafff); /* Light blue gradient */
+    background: linear-gradient(145deg, #007bff, #00c6ff); /* Bright gradient from blue to cyan */
+    border: none;
     border-radius: 12px;
     text-decoration: none;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2), -3px -3px 8px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 123, 255, 0.3); /* Shadow and subtle outer glow */
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Hover Effect */
+/* Hover Effects for Depth and Animation */
 .main-button:hover {
-    transform: translateY(-4px);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), -5px -5px 10px rgba(255, 255, 255, 0.4);
+    transform: translateY(-4px) scale(1.05); /* Lift and scale slightly */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 123, 255, 0.5); /* Enhance glow on hover */
+    background: linear-gradient(145deg, #00c6ff, #007bff); /* Reverse gradient for a shimmering effect */
 }
 
-/* Active/Pressed Effect */
+/* Active (Pressed) State */
 .main-button:active {
-    transform: translateY(2px);
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2), -2px -2px 6px rgba(255, 255, 255, 0.2);
-}	
-@media (max-width: 768px) {
-    .button-container {
-        flex-direction: column;
-        align-items: center;
-    }
+    transform: translateY(2px) scale(1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
 
-    .main-button {
-        width: 80%;
-        text-align: center;
-    }
+/* Pulse Animation for Special Effects */
+.main-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(0, 123, 255, 0) 50%);
+    transition: transform 0.4s ease;
+    transform: scale(0);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.main-button:hover::before {
+    transform: scale(1);
+    opacity: 0;
 }
 
     </style>
@@ -184,17 +198,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="mailto:silviacgil@gmail.com" class="main-button" target="_top">Contact</a>
         </div>
 
-     
-
-        <!-- Search Box -->
-        <div class="search">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
-            <input type="text" id="search-box" placeholder="Search maps..." oninput="fetchResults(this.value)" />
-            <div id="suggestions"></div>
-        </div>
-	       <!-- Feedback Form (Initially Hidden) -->
+           <!-- Feedback Form (Initially Hidden) -->
         <div class="feedback-container" id="feedbackFormContainer" style="display: none;">
             <h2>We'd love your feedback!</h2>
             <form action="https://formspree.io/f/mbjnydge" method="POST">
@@ -209,6 +213,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <button type="submit">Send Feedback To Panditadata</button>
             </form>
         </div>
+
+        <!-- Search Box -->
+        <div class="search">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+            <input type="text" id="search-box" placeholder="Search maps..." oninput="fetchResults(this.value)" />
+            <div id="suggestions"></div>
+        </div>
+	 
     </header>
        <script>
         const mockData = [
