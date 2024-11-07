@@ -131,31 +131,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 /* Main Button Styling with Gradient, Glow, and Hover Effects */
 .main-button {
     display: inline-block;
-    padding: 12px 24px;
+    padding: 14px 28px; /* Increased padding for more width and height */
     font-size: 16px;
     font-weight: bold;
     color: #ffffff;
-    background: linear-gradient(145deg, #007bff, #00c6ff); /* Bright gradient from blue to cyan */
+    background: linear-gradient(145deg, #007bff, #00c6ff); /* Blue gradient */
     border: none;
     border-radius: 12px;
     text-decoration: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 123, 255, 0.3); /* Shadow and subtle outer glow */
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 123, 255, 0.3); /* Soft outer glow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    text-align: center;
+    min-width: 180px; /* Ensures buttons stay wide enough */
+
 }
 
-/* Hover Effects for Depth and Animation */
+/* Hover Effects for a Lifted and Glow Effect */
 .main-button:hover {
-    transform: translateY(-4px) scale(1.05); /* Lift and scale slightly */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 123, 255, 0.5); /* Enhance glow on hover */
-    background: linear-gradient(145deg, #00c6ff, #007bff); /* Reverse gradient for a shimmering effect */
+    transform: translateY(-4px); /* Lift button on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 123, 255, 0.5); /* Stronger glow on hover */
+    background: linear-gradient(145deg, #00c6ff, #007bff); /* Gradient shift */
 }
 
 /* Active (Pressed) State */
 .main-button:active {
-    transform: translateY(2px) scale(1);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    transform: translateY(2px); /* Slight press effect */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
 /* Pulse Animation for Special Effects */
