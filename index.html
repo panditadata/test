@@ -70,28 +70,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
     <script src="https://unpkg.com/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js"></script>
     <style>
-     .search {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+   .feedback-container {
+    display: none; /* Hidden initially, toggled by JavaScript */
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+} 
 
         .search svg {
             width: 20px;
             height: 20px;
             fill: #333;
         }
+/* Search Box Styling */
+.search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-        #search-box {
-            padding: 6px 10px;
-            font-size: 16px;
-            color: #333;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 200px;
-            box-sizing: border-box;
-        }
+#search-box {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
 
         #suggestions {
             position: absolute;
@@ -118,6 +123,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: 20px;
     justify-content: center;
     margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);	
 }
 
 /* Main Button Styles */
