@@ -164,52 +164,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Button Container at the Top of the Page -->
-    <div class="button-container">
-        
-	 <!-- External Link Button -->
-	
-        <a href="https://www.panditanimation.com" class="main-button" target="_blank">Panditadata</a>    
-        <a href="ai-ml-portfolio.html" class="main-button">AI & ML Portfolio</a>
-        <a href="marsoncall.html" class="main-button">Marsoncall</a>
-	<a href="fun-maps.html" class="main-button">Fun Maps</a>    
-        <a href="feedback.html" class="main-button">Feedback</a>
-	<a href="mailto:silviacgil@gmail.com" class="main-button"  target="_top">Contact</a>
-    </div>	
-	
-<!-- header -->
-    <header>
-      
-           
-            
-             <!-- Feedback form -->
-             <div class="feedback-container">
-                <a href="#" id="feedbackLink">Feedback</a>
-                <!-- modify this form HTML and place wherever you want your form -->
-            <form
-                action="https://formspree.io/f/mbjnydge"
-                method="POST">
+  <!-- Header Section with All Elements Aligned in One Row -->
+    <header class="header-container">
+        <!-- Button Container -->
+        <div class="button-container">
+            <a href="https://www.panditanimation.com" class="main-button" target="_blank">Panditadata</a>
+            <a href="ai-ml-portfolio.html" class="main-button">AI & ML Portfolio</a>
+            <a href="marsoncall.html" class="main-button">Marsoncall</a>
+            <a href="fun-maps.html" class="main-button">Fun Maps</a>
+            <a href="#" class="main-button" id="feedbackLink">Feedback</a>
+            <a href="mailto:silviacgil@gmail.com" class="main-button" target="_top">Contact</a>
+        </div>
+
+        <!-- Feedback Form (Initially Hidden) -->
+        <div class="feedback-container" id="feedbackFormContainer" style="display: none;">
+            <h2>We'd love your feedback!</h2>
+            <form action="https://formspree.io/f/mbjnydge" method="POST">
                 <label>
-                How much do you like Panditadata Website
-                <textarea name="message"  placeholder="Rate the Website" ></textarea>
+                    How much do you like Panditadata Website?
+                    <textarea name="message" placeholder="Rate the Website"></textarea>
                 </label>
                 <label>
-                Suggest next map topic:
-                <textarea name="message" placeholder="Bees, forests?"></textarea>
+                    Suggest next map topic:
+                    <textarea name="message" placeholder="Bees, forests?"></textarea>
                 </label>
-                <!-- your other form fields go here -->
                 <button type="submit">Send Feedback To Panditadata</button>
-                </form>
-            </div>
-           
-	    
-        </ul>
-	<!-- Search Box -->    
+            </form>
+        </div>
+
+        <!-- Search Box -->
         <div class="search">
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
-	    <input type="text" id="search-box" placeholder="Search maps..." oninput="fetchResults(this.value)" />
+            <input type="text" id="search-box" placeholder="Search maps..." oninput="fetchResults(this.value)" />
             <div id="suggestions"></div>
         </div>
     </header>
