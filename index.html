@@ -88,11 +88,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             height: 20px;
             fill: #333;
         }
-/* Search Box Styling */
+/* Search Box Aligned to the Right */
 .search {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-left: auto; /* Push search box to the far right */
 }
 
 #search-box {
@@ -124,14 +125,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 /* Button Container for layout */
 .button-container {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     justify-content: center;
     margin-top: 20px;
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);	
+    margin-right: auto;
 }
-
+.header-container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+}
 /* Main Button Styling with Gradient, Glow, and Hover Effects */
 .main-button {
     display: inline-block;
