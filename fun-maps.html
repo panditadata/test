@@ -238,10 +238,16 @@ header nav a.active, header nav a:hover {
     border: none;
 }
 .map-frame {
-    width: 100%;
-    height: 200px;
-    border: none;
-    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%; /* Increase width to show more map content */
+    height: 300%; /* Increase height accordingly */;
+    transform: scale(0.3); /* Scale down to fit more of the map in view */
+    transform-origin: top left;
+    border-radius: 10px;
+    pointer-events: none; /* Prevent interaction in the card view */
+    object-fit: cover; /* Ensures the map fills the card */
 }
 /* Footer Styles */
 footer {
