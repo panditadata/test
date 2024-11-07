@@ -189,7 +189,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transform: scale(1);
     opacity: 0;
 }
+.thumbnail .item iframe {
+    position: absolute;
+    inset: 0;
+    width: 300%; /* Increase width to display more map content */
+    height: 300%; /* Increase height accordingly */
+    transform: scale(0.3); /* Lower the scale to show more of the map */
+    transform-origin: top left;
+    object-fit: cover;
+    border-radius: 10px;
+    pointer-events: none;
+}
 
+.thumbnail-map .item map {
+    width: 300%; /* Increase width to display more map content */
+    height: 300%; /* Increase height accordingly */
+    transform: scale(0.3); /* Adjust scale as needed */
+    transform-origin: top left;
+    object-fit: cover;
+    border-radius: 10px !important;
+}
     </style>
 </head>
 <body>
@@ -237,13 +256,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	 
     </header>
        <script>
-        const mockData = [
-            { title: "Earthquake Map", technology: "Heatmap", features: ["Time Animation"], topic: "Earthquakes" ,url: "image/EQ_mapFFF.html"},
-            { title: "Maritime Route", technology: "Folium", features: ["Maritime Route Calculation"], topic: "Routes", url:"image/EQ_mapAF.html" },
-            { title: "Weather Temperature", technology: "Heatmap", features: ["Time Animation"], topic: "Temperature", url:"image/temperatureworld.html" },
-	    { title: "Data", technology: "Folium", features: ["Data Animation"], topic: "Data", url:"image/EQ_Merged_Stage.html" },
-            // Add more static mock entries as needed
-        ];
+      const mockData = [
+    { title: "Earthquake Map", technology: "Heatmap", features: ["Time Animation"], topic: "Earthquakes", url: "image/EQ_mapFFF.html" },
+    { title: "Maritime Route", technology: "Folium", features: ["Maritime Route Calculation"], topic: "Routes", url: "image/EQ_mapAF.html" },
+    { title: "Weather Temperature", technology: "Heatmap", features: ["Time Animation"], topic: "Temperature", url: "image/temperatureworld.html" },
+    { title: "Data Visualization", technology: "Folium", features: ["Data Animation"], topic: "Data", url: "image/EQ_Merged_Stage.html" },
+    { title: "Wind Map", technology: "Leaflet", features: ["Layer Control"], topic: "World Wind", url: "image/demo.html" },
+    { title: "DANA Rain Flooding", technology: "Leaflet", features: ["Flooding Animation"], topic: "Flooding", url: "image/valencia_flood_split_map.html" },
+    { title: "Valencia Flooding", technology: "Leaflet", features: ["Flooding Animation"], topic: "Flooding", url: "image/valencia3.html" },
+    { title: "Valencia Satellite View", technology: "DANA", features: ["Aerial Satellite View"], topic: "Flooding", url: "image/valencia7.html" },
+    { title: "Earthquake Heatmap", technology: "Folium", features: ["Dynamic Time Series"], topic: "Earthquakes", url: "image/HeatmapwithTime1.html" },
+    { title: "Global Earthquakes", technology: "Folium", features: ["Historical Earthquake Data"], topic: "Earthquakes", url: "image/EQ_map1.html" },
+    { title: "Draggable Icon Helicopter", technology: "Leaflet", features: ["Draggable Icons"], topic: "Airports", url: "image/mapId" },
+    { title: "Map Toolbars", technology: "Google Map", features: ["Earth Engine Integration"], topic: "Earth Engine", url: "image/mmgod1.html" },
+    { title: "Split Map", technology: "Google Map", features: ["Dual Layer Comparison"], topic: "Earth Engine", url: "image/split_map_folium1.html" },
+    { title: "Selection of Basemaps", technology: "Google Map", features: ["Multiple Basemap Options"], topic: "Earth Engine", url: "image/mbasemapyes.html" },
+    { title: "Geemap Google Map", technology: "Google Map", features: ["Earth Engine"], topic: "Earth Engine", url: "image/mymapGoogle1.html" },
+    { title: "Dual Map", technology: "Google Map", features: ["Dual Map Comparison"], topic: "Earth Engine", url: "image/split_map.html" },
+    { title: "Timestamped Data", technology: "Folium", features: ["Time Series"], topic: "Time Series", url: "image/EQ_Merged_Stage.html" },
+];
 	</script>
     
     <!-- slider -->
@@ -616,26 +647,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- JavaScript for Dynamic Search Suggestions -->
     <script>
         function fetchResults(query) {
-            const suggestions = document.getElementById("suggestions");
-            suggestions.innerHTML = '';
+        const suggestions = document.getElementById("suggestions");
+        suggestions.innerHTML = '';
 
-            if (query.length < 2) return;
+        // Show all maps if the query is empty or has fewer than 2 characters
+        const results = query.length < 2 ? mockData : mockData.filter(map => 
+            map.title.toLowerCase().includes(query.toLowerCase()) ||
+            map.technology.toLowerCase().includes(query.toLowerCase()) ||
+            map.features.some(feature => feature.toLowerCase().includes(query.toLowerCase())) ||
+            map.topic.toLowerCase().includes(query.toLowerCase())
+        );
 
-            const results = mockData.filter(map => 
-                map.title.toLowerCase().includes(query.toLowerCase()) ||
-                map.technology.toLowerCase().includes(query.toLowerCase()) ||
-                map.features.some(feature => feature.toLowerCase().includes(query.toLowerCase())) ||
-                map.topic.toLowerCase().includes(query.toLowerCase())
-            );
-
-            results.forEach(map => {
-                const div = document.createElement("div");
-                div.className = "suggestion-item";
-                div.textContent = `${map.title} (${map.technology}) - ${map.topic}`;
-                div.onclick = () => { window.location.href = map.url; };
-                suggestions.appendChild(div);
-            });
-        }
+        // Display results
+        results.forEach(map => {
+            const div = document.createElement("div");
+            div.className = "suggestion-item";
+            div.textContent = `${map.title} (${map.technology}) - ${map.topic}`;
+            div.onclick = () => { window.location.href = map.url; };
+            suggestions.appendChild(div);
+        });
+    }
     </script>
     <!-- External Script References -->
      <!-- JavaScript to Toggle Feedback Form Visibility -->
