@@ -251,7 +251,26 @@ footer {
     text-align: center;
     font-size: 14px;
 }
+.thumbnail .item iframe {
+    position: absolute;
+    inset: 0;
+    width: 300%; /* Increase width to display more map content */
+    height: 300%; /* Increase height accordingly */
+    transform: scale(0.3); /* Lower the scale to show more of the map */
+    transform-origin: top left;
+    object-fit: cover;
+    border-radius: 10px;
+    pointer-events: none;
+}
 
+.thumbnail-map .item map {
+    width: 300%; /* Increase width to display more map content */
+    height: 300%; /* Increase height accordingly */
+    transform: scale(0.3); /* Adjust scale as needed */
+    transform-origin: top left;
+    object-fit: cover;
+    border-radius: 10px !important;
+}
 
 </style>
 </head>
