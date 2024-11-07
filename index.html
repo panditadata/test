@@ -612,14 +612,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </script>
     <!-- External Script References -->
      <!-- JavaScript to Toggle Feedback Form Visibility -->
-    <script>
-        document.getElementById('feedbackLink').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default link behavior
-            const feedbackFormContainer = document.getElementById('feedbackFormContainer');
-            feedbackFormContainer.style.display = 
-                feedbackFormContainer.style.display === 'none' ? 'block' : 'none';
-        });
-    </script>	
+  <script>
+    document.getElementById('feedbackLink').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        const feedbackFormContainer = document.getElementById('feedbackFormContainer');
+        feedbackFormContainer.style.display = feedbackFormContainer.style.display === 'none' ? 'block' : 'none';
+    });
+</script>	
     <script src="script1.js"></script>	
     <script src="app.js"></script>
 </body>
