@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~9.0.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  "initialViewState": {
+    "latitude": 28.0,
+    "longitude": -90.0,
+    "pitch": 30,
+    "zoom": 5
+  },
+  "layers": [
+    {
+      "@@type": "ScatterplotLayer",
+      "data": [
+        {
+          "category": 1,
+          "latitude": 23.1,
+          "longitude": -75.1,
+          "time": "2005-08-23"
+        },
+        {
+          "category": 1,
+          "latitude": 24.6,
+          "longitude": -83.0,
+          "time": "2005-08-24"
+        },
+        {
+          "category": 3,
+          "latitude": 26.0,
+          "longitude": -85.0,
+          "time": "2005-08-25"
+        },
+        {
+          "category": 5,
+          "latitude": 27.1,
+          "longitude": -88.6,
+          "time": "2005-08-28"
+        },
+        {
+          "category": 3,
+          "latitude": 28.6,
+          "longitude": -89.6,
+          "time": "2005-08-29"
+        },
+        {
+          "category": 1,
+          "latitude": 32.6,
+          "longitude": -90.4,
+          "time": "2005-08-29"
+        }
+      ],
+      "getColor": "@@=[255, 0, 0, 160]",
+      "getPosition": "@@=[longitude, latitude]",
+      "getRadius": 50000,
+      "id": "af5c44f9-fe41-4b63-907a-f2f03d3d61f8",
+      "pickable": true
+    },
+    {
+      "@@type": "ArcLayer",
+      "autoHighlight": true,
+      "data": [
+        {
+          "category": 1,
+          "latitude": 23.1,
+          "longitude": -75.1,
+          "time": "2005-08-23"
+        },
+        {
+          "category": 1,
+          "latitude": 24.6,
+          "longitude": -83.0,
+          "time": "2005-08-24"
+        },
+        {
+          "category": 3,
+          "latitude": 26.0,
+          "longitude": -85.0,
+          "time": "2005-08-25"
+        },
+        {
+          "category": 5,
+          "latitude": 27.1,
+          "longitude": -88.6,
+          "time": "2005-08-28"
+        },
+        {
+          "category": 3,
+          "latitude": 28.6,
+          "longitude": -89.6,
+          "time": "2005-08-29"
+        },
+        {
+          "category": 1,
+          "latitude": 32.6,
+          "longitude": -90.4,
+          "time": "2005-08-29"
+        }
+      ],
+      "getSourceColor": [
+        0,
+        128,
+        200
+      ],
+      "getSourcePosition": "@@=[longitude, latitude]",
+      "getTargetColor": [
+        0,
+        255,
+        0
+      ],
+      "getTargetPosition": "@@=[longitude+0.5, latitude+0.5]",
+      "getWidth": "@@=category * 1000",
+      "id": "fede2b6c-4cfb-4324-8e2b-8cad05fc67c3",
+      "widthMinPixels": 3,
+      "widthScale": 0.01
+    }
+  ],
+  "mapProvider": "carto",
+  "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+  "views": [
+    {
+      "@@type": "MapView",
+      "controller": true
+    }
+  ]
+};
+    const tooltip = {'text': 'Category {category} - {time}'};
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration
+    });
+
+  </script>
+</html>
