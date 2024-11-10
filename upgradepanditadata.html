@@ -286,15 +286,15 @@ nav {
 /* Navigation buttons styling */
 .nav-buttons {
     display: flex;
-    flex-direction: row; /* Horizontal layout for nav buttons */
+    flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .nav-button {
     display: inline-block;
-    padding: 8px 16px; /* Reduce padding for smaller buttons */
+    padding: 10px 20px; /* Reduce padding for smaller buttons */
     color: #fff;
     background-color: #007bff;
     border-radius: 20px; /* Smaller rounded corners */
@@ -303,7 +303,7 @@ nav {
     font-size: 14px; /* Adjust font size */
     transition: background-color 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    
+    white-space: nowrap;
 }
 
 
