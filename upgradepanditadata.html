@@ -76,12 +76,14 @@
         }
 
         header {
+	    position: sticky;
+	    top: 0;
+	    z-index: 10;  /* Ensures header stays above other content */
+	    padding: 20px;
+	    background-color: #e57373;
+	    color: #fff;
    
-    padding: 20px;
-    background-color: #e57373;
-    color: #fff;
-   
-}
+	}
         header h1 {
             margin: 0;
             font-size: 36px;
