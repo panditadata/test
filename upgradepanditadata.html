@@ -76,19 +76,22 @@
         }
 
         header {
-	    position: sticky;
-	    top: 0;
-	    z-index: 10;  /* Ensures header stays above other content */
-	    padding: 20px;
-	    background-color: #e57373;
+	    background-color: #e57373; /* Soft coral */
 	    color: #fff;
-   
+	    padding: 20px;
+	    text-align: center;
 	}
+	    
         header h1 {
             margin: 0;
             font-size: 36px;
             color: #ffe0b2;
         }
+	    
+	header p {
+	    margin: 5px 0 15px;
+	    font-size: 16px;
+	}
 
         header nav a {
             color: #ffe0b2;
@@ -103,12 +106,11 @@
         }
 
         .tab-container {
-           display: flex;
+	     .tab-container {
+	    display: flex;
 	    justify-content: center;
-	    background-color: #4db6ac;
-	    margin-top: 20px; /* Adjusts space between header and tab container */
-	    padding: 10px 0; /* Adds padding to create more space */
-        }
+	    background-color: #4db6ac; /* Muted teal for balance */
+}
 
         .tab-button {
             background-color: inherit;
