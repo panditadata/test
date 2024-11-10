@@ -75,15 +75,16 @@
             color: #333;
         }
 
-          header {
-   
+	  header {
+	    width: 100vw;  /* Ensures header spans full viewport width */
 	    padding: 20px;
 	    background-color: #e57373;
 	    color: #fff;
 	    text-align: center;
-    	    position: relative;
-   
+	    position: relative;
+	    box-sizing: border-box;  /* Ensures padding is included within the width */
 }
+
         header h1 {
             margin: 0;
             font-size: 36px;
