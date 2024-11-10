@@ -69,10 +69,12 @@
     <style>
         /* General Styles */
         body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f9fafc;
-            color: #333;
+           margin: 0;
+	    padding: 0;
+	    font-family: 'Arial', sans-serif;
+	    background-color: #f9fafc;
+	    color: #333;
+	    box-sizing: border-box;
         }
 
 	  header {
@@ -320,12 +322,10 @@ nav {
 }
 /* Position the search box at the top-right */
 .search {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        position: absolute;
-        top: 20px;
-        right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
 }
 
 /* Style for the search icon */
@@ -374,8 +374,7 @@ nav {
 
 /* Center the title and description */
 .title-description {
-      margin-bottom: 15px;	
-      text-align: center;
+       margin: 0;
     }
 
  .title-description h1 {
@@ -398,9 +397,11 @@ nav {
 /* Top section with title, description, and search box */
 .header-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    position: relative;
+    justify-content: space-between; /* Aligns title on left and search on right */
+    max-width: 1200px; /* Set max-width if you want content centered */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Optional padding */
 }
 /* Search box styling */
 .search-container {
