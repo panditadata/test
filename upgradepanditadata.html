@@ -273,13 +273,7 @@ nav {
 }
 
 /* Navigation buttons styling */
-.nav-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+
 
 .nav-button {
     display: inline-block;
@@ -306,12 +300,12 @@ nav {
 }
 /* Position the search box at the top-right */
 .search {
-    
-    top: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
 }
 
 /* Style for the search icon */
@@ -357,30 +351,24 @@ nav {
     background-color: #f0f0f0;
 }
 
-/* Container to align title, nav, and search */
-.header-content {
-   display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
+
 /* Center the title and description */
 .title-description {
     text-align: center;
-    margin-bottom: 20px; /* Space between title/description and buttons */
-}
+   flex-grow: 1; /* Takes available space */
+    }
 
-.title-description h1 {
-    font-size: 36px;
-    color: #ffe0b2;
-    margin: 0;
-}
+ .title-description h1 {
+        margin: 0;
+        font-size: 36px;
+        color: #ffe0b2;
+    }
 
-.title-description p {
-    font-size: 16px;
-    color: #ffe0b2;
-    margin: 0;
-}
+ .title-description p {
+        font-size: 16px;
+        color: #ffe0b2;
+        margin: 0;
+    }
 /* Top section with title, description, and search box */
 .header-top {
     display: flex;
@@ -392,10 +380,11 @@ nav {
 /* Container to align title, nav, and search */
 /* Header styling */
 .header-container {
-    background-color: #e57373;
-    padding: 20px;
-    color: #fff;
-}
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Ensures search box stays on the far right */
+        flex-wrap: wrap;
+    }
 /* Search box styling */
 .search-container {
     position: absolute;
