@@ -79,10 +79,10 @@
 
 	  header {
 	    width: 100vw;  /* Ensures header spans full viewport width */
-	    padding: 20px;
+	    padding: 20px 0;  /* Remove side padding to allow full coverage */
 	    background-color: #e57373;
 	    color: #fff;
-	    
+	    text-align: center;
 	    position: relative;
 	    box-sizing: border-box;  /* Ensures padding is included within the width */
 }
@@ -406,7 +406,8 @@ nav {
     max-width: 1200px; /* Set max-width if you want content centered */
     margin: 0 auto; /* Center the container */
     /* padding: 0 20px; /* Optional padding */
-    gap:10px;
+    /* gap:10px; */
+    flex-direction: column;
 }
 /* Search box styling */
 .search-container {
