@@ -1,26 +1,51 @@
-<script>
-    const viewer = new Cesium.Viewer('cesiumContainer', {
-        terrainProvider: Cesium.createWorldTerrain()
-    });
-
-    // Add a building model to simulate movement
-    const building = viewer.entities.add({
-        position: Cesium.Cartesian3.fromDegrees(-74.006, 40.7128, 100),
-        model: {
-            uri: 'https://raw.githubusercontent.com/CesiumGS/cesium/master/Apps/Sandcastle/models/CesiumGroundWater.glb',
-            minimumPixelSize: 64,
-            maximumScale: 200
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CesiumJS Building Animation</title>
+    <style>
+        html, body, #cesiumContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
-    });
+    </style>
+    <!-- Include CesiumJS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/cesium@1.92.1/Build/Cesium/Cesium.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.92.1/Build/Cesium/Widgets/widgets.css">
+</head>
+<body>
+    <div id="cesiumContainer"></div>
 
-    // Animate the building to move upwards
-    let height = 100;
-    let direction = 1;
-    viewer.scene.preRender.addEventListener(() => {
-        height += direction * 1; // Adjust the speed of movement here
-        if (height > 500 || height < 100) {
-            direction *= -1; // Reverse direction
-        }
-        building.position = Cesium.Cartesian3.fromDegrees(-74.006, 40.7128, height);
-    });
-</script>
+    <script>
+        // Initialize Cesium viewer
+        const viewer = new Cesium.Viewer('cesiumContainer', {
+            terrainProvider: Cesium.createWorldTerrain()
+        });
+
+        // Add a building model to simulate movement
+        const building = viewer.entities.add({
+            position: Cesium.Cartesian3.fromDegrees(-74.006, 40.7128, 100),
+            model: {
+                uri: 'https://raw.githubusercontent.com/CesiumGS/cesium/master/Apps/Sandcastle/models/CesiumGroundWater.glb',
+                minimumPixelSize: 64,
+                maximumScale: 200
+            }
+        });
+
+        // Animate the building to move upwards
+        let height = 100;
+        let direction = 1;
+        viewer.scene.preRender.addEventListener(() => {
+            height += direction * 1; // Adjust the speed of movement here
+            if (height > 500 || height < 100) {
+                direction *= -1; // Reverse direction
+            }
+            building.position = Cesium.Cartesian3.fromDegrees(-74.006, 40.7128, height);
+        });
+    </script>
+</body>
+</html>
+
