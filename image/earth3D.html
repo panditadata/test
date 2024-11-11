@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cesium 3D Example</title>
+    <title>Cesium Earth 3D Example</title>
     <script src="https://cdn.jsdelivr.net/npm/cesium@1.123.1/Build/Cesium/Cesium.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.123.1/Build/Cesium/Widgets/widgets.css">
     <style>
@@ -17,33 +17,50 @@
     <div id="cesiumContainer"></div>
 
     <script>
+        // Set the Cesium Ion access token
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMTQzMDdlMi1iNzVkLTRjZTQtYWNkZC04YTI0YzNkOWIwYTkiLCJpZCI6MjU0NTE4LCJpYXQiOjE3MzEzNjExNTd9.0ztOb7_ukJnMstdxWMvrsavegI-5RuijmVE-FcyssEk';  // Replace with your actual token
+
+        // Initialize the Cesium Viewer with Earth imagery and terrain
         const viewer = new Cesium.Viewer('cesiumContainer', {
-            imageryProvider: new Cesium.UrlTemplateImageryProvider({
-                url: 'https://assets.agi.com/stk-terrain/v1/tilesets/mars/tiles/{z}/{x}/{y}.png'
+            imageryProvider: new Cesium.IonImageryProvider({
+                assetId: 2  // Earth's default imagery
             }),
             terrainProvider: new Cesium.CesiumTerrainProvider({
-                url: Cesium.IonResource.fromAssetId(1)  // Terrain asset ID for default Cesium World Terrain
+                url: Cesium.IonResource.fromAssetId(1)  // Earth's default terrain
             }),
             shouldAnimate: true
         });
 
-        const building = viewer.entities.add({
-            position: Cesium.Cartesian3.fromDegrees(137.4, -4.5, 5000),
-            model: {
-                uri: 'https://raw.githubusercontent.com/CesiumGS/cesium/master/Apps/Sandcastle/models/CesiumGroundWater.glb',
-                minimumPixelSize: 64,
-                maximumScale: 200
+        // Set camera to Earth coordinates
+        viewer.camera.setView({
+            destination: Cesium.Cartesian3.fromDegrees(0.0, 0.0, 3000000), // Earth coordinates
+            orientation: {
+                heading: Cesium.Math.toRadians(0),
+                pitch: Cesium.Math.toRadians(-30),
+                roll: Cesium.Math.toRadians(0)
             }
         });
 
-        let height = 5000;
+        // Optional: Add a marker on Earth
+        const marker = viewer.entities.add({
+            position: Cesium.Cartesian3.fromDegrees(0.0, 0.0, 1000),  // Example position on Earth (Equator)
+            point: {
+                color: Cesium.Color.RED,
+                pixelSize: 10,
+                outlineColor: Cesium.Color.BLACK,
+                outlineWidth: 2
+            }
+        });
+
+        // Optional: Animate marker height for visual effect
+        let height = 1000;
         let direction = 1;
         viewer.scene.preRender.addEventListener(() => {
             height += direction * 10;
-            if (height > 10000 || height < 5000) {
+            if (height > 5000 || height < 1000) {
                 direction *= -1;
             }
-            building.position = Cesium.Cartesian3.fromDegrees(137.4, -4.5, height);
+            marker.position = Cesium.Cartesian3.fromDegrees(0.0, 0.0, height);  // Adjust height of the marker
         });
     </script>
 </body>
