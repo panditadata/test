@@ -2,274 +2,165 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World's Best Event Map</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <title>Interactive Map with Customization Options</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-        }
-        #map { height: 600px; width: 100%; max-width: 800px; margin-bottom: 20px; }
-        #control-panel {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-        }
-        .control-group {
-            margin: 10px 0;
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            font-weight: bold;
-        }
-        input, select, textarea, button {
-            margin: 5px 0;
-            padding: 8px;
-            font-size: 1rem;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #icon-preview {
-            font-size: 2rem;
-        }
-        .alert {
-            color: red;
-            font-size: 0.9rem;
-            display: none;
-        }
-        .popup-content {
-            background-color: #f0f9ff;
-            border: 2px solid #007bff;
-            padding: 10px;
-            border-radius: 10px;
-            color: #333;
-            font-size: 1rem;
-        }
-        .popup-content h4 {
-            margin: 0 0 5px 0;
-            color: #007bff;
-        }
-        .popup-content p {
-            margin: 5px 0;
-        }
-        .popup-content img {
-            display: block;
-            max-width: 200px;
-            max-height: 150px;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
+        #map { width: 100%; height: 600px; margin-top: 20px; }
+        #controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        #legalNoticeModal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 5px; display: none; }
+        #popupCustomization img { max-width: 100%; height: auto; }
     </style>
 </head>
 <body>
-    <h2>My Personalized Event Map</h2>
-    <div id="map"></div>
 
-    <div id="control-panel">
-        <div id="alert" class="alert"></div>
+<h2>Interactive Map with Customization Options</h2>
+<input type="text" id="mapTitleInput" placeholder="Enter map title here" style="width: 100%; font-size: 20px;" />
 
-        <div class="control-group">
-            <label>Latitude:</label>
-            <input type="text" id="lat" placeholder="Enter Latitude">
-        </div>
+<div id="controls">
+    <input type="text" id="locationSearch" placeholder="Enter city name">
+    <button id="searchButton">Search Location</button>
 
-        <div class="control-group">
-            <label>Longitude:</label>
-            <input type="text" id="lng" placeholder="Enter Longitude">
-        </div>
+    <label for="basemapSelector">Basemap:</label>
+    <select id="basemapSelector">
+        <option value="dark">Dark</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        <option value="red">Red</option>
+    </select>
 
-        <div class="control-group">
-            <label>Date:</label>
-            <input type="text" id="date" placeholder="Enter Date (e.g., 2022-04-15)">
-        </div>
+    <label for="lineColor">Line Color:</label>
+    <input type="color" id="lineColor" value="#FF0000">
 
-        <div class="control-group">
-            <label>Event Name:</label>
-            <input type="text" id="event-name" placeholder="Enter Event Name">
-        </div>
+    <label for="fontSelect">Font:</label>
+    <select id="fontSelect">
+        <option value="Arial">Arial</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Courier New">Courier New</option>
+    </select>
 
-        <div class="control-group">
-            <label>Message:</label>
-            <textarea id="message" placeholder="Enter a message for this location"></textarea>
-        </div>
+    <label for="fontSize">Font Size:</label>
+    <input type="number" id="fontSize" value="14">
 
-        <div class="control-group">
-            <label>Image Upload or URL:</label>
-            <input type="file" id="image-upload">
-            <input type="text" id="image-url" placeholder="Enter Image URL (optional)">
-        </div>
+    <label for="fontColor">Font Color:</label>
+    <input type="color" id="fontColor" value="#000000">
 
-        <div class="control-group">
-            <label>Icon:</label>
-            <select id="icon-selector" onchange="updateIconPreview()">
-                <option value="📍">📍 Pin</option>
-                <option value="🎉">🎉 Celebration</option>
-                <option value="❤️">❤️ Love</option>
-                <option value="🌄">🌄 Adventure</option>
-                <option value="✈️">✈️ Travel</option>
-                <option value="🌍">🌍 Global</option>
-            </select>
-            <div id="icon-preview">📍</div>
-        </div>
+    <label for="iconSelect">Event Icon:</label>
+    <select id="iconSelect">
+        <option value="https://path/to/wedding-icon.png">Wedding</option>
+        <option value="https://path/to/travel-icon.png">Travel</option>
+        <option value="https://path/to/romance-icon.png">Romance</option>
+        <!-- Add more icons here -->
+    </select>
 
-        <div class="control-group">
-            <label>Icon Size:</label>
-            <input type="range" id="icon-size" min="20" max="60" value="30" oninput="updateIconPreviewSize()">
-            <span id="icon-size-display">30px</span>
-        </div>
+    <input type="file" id="imageUpload" accept="image/*">
 
-        <button onclick="addLocation()">Add Location</button>
-        <button onclick="saveMapAsHTML()">Save Map as HTML</button>
-    </div>
+    <input type="text" id="popupMessageInput" placeholder="Enter message for popup" style="width: 100%; margin-top: 10px;">
+    <button id="saveMapBtn">Save as PNG</button>
+    <button id="saveMapPDFBtn">Save as PDF</button>
+    <button id="legalNoticeBtn">Legal Notice</button>
+</div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script>
-        const map = L.map('map').setView([20, 0], 2);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+<div id="map"></div>
 
-        const locations = [];
+<div id="legalNoticeModal">
+    <p>This app does not store any images or personal data. All images are used only in the browser session.</p>
+    <button onclick="document.getElementById('legalNoticeModal').style.display='none'">Close</button>
+</div>
 
-        function showAlert(message) {
-            const alertBox = document.getElementById("alert");
-            alertBox.style.display = "block";
-            alertBox.innerText = message;
-            setTimeout(() => alertBox.style.display = "none", 3000);
+<script>
+    const map = L.map('map').setView([51.505, -0.09], 13);
+    const basemaps = {
+        "dark": L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CartoDB' }),
+        "green": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }),
+        "blue": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }),
+        "red": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' })
+    };
+    basemaps["dark"].addTo(map);
+
+    document.getElementById("basemapSelector").addEventListener("change", function() {
+        map.eachLayer((layer) => map.removeLayer(layer));
+        basemaps[this.value].addTo(map);
+    });
+
+    const locations = [];
+    document.getElementById("searchButton").addEventListener("click", () => {
+        const cityName = document.getElementById("locationSearch").value;
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${cityName}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    const lat = data[0].lat;
+                    const lon = data[0].lon;
+                    map.setView([lat, lon], 13);
+                    addLocation(lat, lon, `${cityName} - Searched Location`, document.getElementById("iconSelect").value, document.getElementById("popupMessageInput").value, new Date().toLocaleString());
+                } else {
+                    alert("Location not found.");
+                }
+            })
+            .catch(error => console.error("Error fetching location:", error));
+    });
+
+    document.getElementById("imageUpload").addEventListener("change", handleImageUpload);
+
+    function handleImageUpload() {
+        const file = document.getElementById("imageUpload").files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const imgSrc = e.target.result;
+                addLocation(51.505, -0.09, "Image Uploaded Location", document.getElementById("iconSelect").value, document.getElementById("popupMessageInput").value, new Date().toLocaleString(), imgSrc);
+            };
+            reader.readAsDataURL(file);
         }
+    }
 
-        function updateIconPreview() {
-            document.getElementById("icon-preview").innerText = document.getElementById("icon-selector").value;
+    function addLocation(lat, lon, date, iconUrl, popupMessage, timestamp, imgSrc = '') {
+        const font = document.getElementById("fontSelect").value;
+        const fontSize = document.getElementById("fontSize").value;
+        const fontColor = document.getElementById("fontColor").value;
+        const selectedIcon = iconUrl || "https://path/to/default/icon.png";
+
+        const icon = L.icon({ iconUrl: selectedIcon, iconSize: [30, 30] });
+        const marker = L.marker([lat, lon], { icon }).addTo(map);
+
+        const popupContent = `
+            <div style="font-family: ${font}; font-size: ${fontSize}px; color: ${fontColor};">
+                <b>${date}</b><br>${popupMessage}<br><small>${timestamp}</small>
+                ${imgSrc ? `<img src="${imgSrc}" style="max-width: 100%; height: auto;">` : ''}
+            </div>`;
+        marker.bindPopup(popupContent).openPopup();
+
+        locations.push([lat, lon]);
+        if (locations.length > 1) {
+            const polyline = L.polyline(locations, { color: document.getElementById("lineColor").value }).addTo(map);
         }
+    }
 
-        function updateIconPreviewSize() {
-            const size = document.getElementById("icon-size").value;
-            document.getElementById("icon-size-display").innerText = `${size}px`;
-            document.getElementById("icon-preview").style.fontSize = `${size}px`;
-        }
-
-        function addLocation() {
-            const lat = parseFloat(document.getElementById("lat").value);
-            const lng = parseFloat(document.getElementById("lng").value);
-            const date = document.getElementById("date").value;
-            const eventName = document.getElementById("event-name").value;
-            const message = document.getElementById("message").value;
-            const iconEmoji = document.getElementById("icon-selector").value;
-            const iconSize = document.getElementById("icon-size").value;
-            const imageInput = document.getElementById("image-upload");
-            const imageUrlInput = document.getElementById("image-url").value;
-
-            if (isNaN(lat) || isNaN(lng)) {
-                showAlert("Please enter valid latitude and longitude.");
-                return;
-            }
-            if (!date || !eventName || !message) {
-                showAlert("Please fill in all required fields.");
-                return;
-            }
-
-            const iconHtml = `<div style="font-size:${iconSize}px; line-height:1;">${iconEmoji}</div>`;
-            const icon = L.divIcon({ html: iconHtml, className: 'custom-icon', iconSize: [iconSize, iconSize] });
-
-            const marker = L.marker([lat, lng], { icon }).addTo(map);
-
-            let imageHtml = "";
-            if (imageInput.files.length > 0) {
-                const imageUrl = URL.createObjectURL(imageInput.files[0]);
-                imageHtml = `<img src="${imageUrl}" alt="User Image">`;
-            } else if (imageUrlInput) {
-                imageHtml = `<img src="${imageUrlInput}" alt="User Image">`;
-            }
-
-            const popupContent = `
-                <div class="popup-content">
-                    <h4>${eventName} - ${date}</h4>
-                    <p>${message}</p>
-                    ${imageHtml}
-                </div>
-            `;
-            marker.bindPopup(popupContent).openPopup();
-
-            if (locations.length > 0) {
-                const lastLocation = locations[locations.length - 1];
-                L.polyline([lastLocation, [lat, lng]], { color: 'blue', weight: 2 }).addTo(map);
-            }
-
-            locations.push([lat, lng]);
-            map.flyTo([lat, lng], 5);
-            clearForm();
-        }
-
-        function clearForm() {
-            document.getElementById("lat").value = "";
-            document.getElementById("lng").value = "";
-            document.getElementById("date").value = "";
-            document.getElementById("event-name").value = "";
-            document.getElementById("message").value = "";
-            document.getElementById("image-upload").value = "";
-            document.getElementById("image-url").value = "";
-            document.getElementById("icon-selector").value = "📍";
-            document.getElementById("icon-size").value = 30;
-            updateIconPreview();
-            updateIconPreviewSize();
-        }
-
-        function saveMapAsHTML() {
-            const mapHTML = `
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Saved Event Map</title>
-                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
-                    <style>
-                        #map { height: 100vh; width: 100%; }
-                        .popup-content { background-color: #f0f9ff; border: 2px solid #007bff; padding: 10px; border-radius: 10px; color: #333; font-size: 1rem; }
-                        .popup-content h4 { margin: 0 0 5px 0; color: #007bff; }
-                        .popup-content img { display: block; max-width: 200px; max-height: 150px; margin-top: 10px; border-radius: 5px; }
-                    </style>
-                </head>
-                <body>
-                    <div id="map"></div>
-                    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-                    <script>
-                        const map = L.map('map').setView([20, 0], 2);
-                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            maxZoom: 18,
-                            attribution: '© OpenStreetMap contributors'
-                        }).addTo(map);
-                        ${locations.map(([lat, lng], i) => `
-                            const marker${i} = L.marker([${lat}, ${lng}]).addTo(map);
-                            marker${i}.bindPopup(\`${locations[i].popupContent}\`).openPopup();
-                        `).join("")}
-                    </script>
-                </body>
-                </html>
-            `;
-            const blob = new Blob([mapHTML], { type: 'text/html' });
+    document.getElementById("saveMapBtn").addEventListener("click", () => {
+        html2canvas(document.getElementById("map")).then(canvas => {
             const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "my-event-map.html";
+            link.download = "myMap.png";
+            link.href = canvas.toDataURL();
             link.click();
-        }
-    </script>
+        });
+    });
+
+    document.getElementById("saveMapPDFBtn").addEventListener("click", () => {
+        html2canvas(document.getElementById("map")).then(canvas => {
+            const imgData = canvas.toDataURL("image/jpeg");
+            const pdf = new jspdf.jsPDF("landscape");
+            pdf.addImage(imgData, 'JPEG', 10, 10, 280, 150);
+            pdf.save("myMap.pdf");
+        });
+    });
+
+    document.getElementById("legalNoticeBtn").addEventListener("click", () => {
+        document.getElementById("legalNoticeModal").style.display = "block";
+    });
+</script>
+
 </body>
 </html>
