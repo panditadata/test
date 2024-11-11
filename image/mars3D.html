@@ -3,51 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CesiumJS Mars Simulation</title>
+    <title>Cesium Mars 3D Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/cesium@1.123.1/Build/Cesium/Cesium.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.123.1/Build/Cesium/Widgets/widgets.css">
     <style>
-        html, body, #cesiumContainer {
+        #cesiumContainer {
             width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
+            height: 100vh;
         }
     </style>
-    <!-- Include CesiumJS from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/cesium@1.92.1/Build/Cesium/Cesium.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.92.1/Build/Cesium/Widgets/widgets.css">
 </head>
 <body>
     <div id="cesiumContainer"></div>
 
     <script>
-        // Initialize Cesium viewer with Mars imagery and terrain
+        // Set the Cesium Ion access token
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMTQzMDdlMi1iNzVkLTRjZTQtYWNkZC04YTI0YzNkOWIwYTkiLCJpZCI6MjU0NTE4LCJpYXQiOjE3MzEzNjExNTd9.0ztOb7_ukJnMstdxWMvrsavegI-5RuijmVE-FcyssEk';  // Replace with your actual token
+
+        // Initialize the Cesium Viewer with Mars imagery and terrain
         const viewer = new Cesium.Viewer('cesiumContainer', {
-            imageryProvider: new Cesium.UrlTemplateImageryProvider({
-                url: 'https://assets.agi.com/stk-terrain/v1/tilesets/mars/tiles/{z}/{x}/{y}.png'
+            imageryProvider: new Cesium.IonImageryProvider({
+                assetId: 3  // Mars default imagery
             }),
-            terrainProvider: Cesium.createWorldTerrain(),  // Using Cesium's Mars terrain
+            terrainProvider: new Cesium.CesiumTerrainProvider({
+                url: Cesium.IonResource.fromAssetId(4)  // Mars default terrain
+            }),
             shouldAnimate: true
         });
 
-        // Add a building or model to simulate a structure on Mars
-        const building = viewer.entities.add({
-            position: Cesium.Cartesian3.fromDegrees(137.4, -4.5, 5000),  // Mars coordinates (longitude, latitude, height)
-            model: {
-                uri: 'https://raw.githubusercontent.com/CesiumGS/cesium/master/Apps/Sandcastle/models/CesiumGroundWater.glb',  // Model for the building
-                minimumPixelSize: 64,
-                maximumScale: 200
+        // Set camera to Mars coordinates
+        viewer.camera.setView({
+            destination: Cesium.Cartesian3.fromDegrees(137.4, -4.6, 5000000), // Mars coordinates (Example: 137.4° E, 4.6° S)
+            orientation: {
+                heading: Cesium.Math.toRadians(0),
+                pitch: Cesium.Math.toRadians(-30),
+                roll: Cesium.Math.toRadians(0)
             }
         });
 
-        // Animate the building to move upwards or downwards
-        let height = 5000;
-        let direction = 1;  // Direction for movement: up (+1) or down (-1)
-        viewer.scene.preRender.addEventListener(() => {
-            height += direction * 10;  // Change in height (speed of movement)
-            if (height > 10000 || height < 5000) {
-                direction *= -1;  // Reverse direction when reaching limits
+        // Optional: Add a marker on Mars
+        const marker = viewer.entities.add({
+            position: Cesium.Cartesian3.fromDegrees(137.4, -4.6, 1000),  // Example position on Mars
+            point: {
+                color: Cesium.Color.RED,
+                pixelSize: 10,
+                outlineColor: Cesium.Color.BLACK,
+                outlineWidth: 2
             }
-            building.position = Cesium.Cartesian3.fromDegrees(137.4, -4.5, height);  // Update building's position
+        });
+
+        // Optional: Animate marker height for visual effect
+        let height = 1000;
+        let direction = 1;
+        viewer.scene.preRender.addEventListener(() => {
+            height += direction * 10;
+            if (height > 5000 || height < 1000) {
+                direction *= -1;
+            }
+            marker.position = Cesium.Cartesian3.fromDegrees(137.4, -4.6, height);  // Adjust height of the marker
         });
     </script>
 </body>
