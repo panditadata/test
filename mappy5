@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Travel Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #map { height: 600px; width: 100%; max-width: 800px; }
+        #form-container {
+            margin-top: 10px;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input, textarea, button {
+            padding: 8px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .alert {
+            color: red;
+            font-size: 0.9rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>My Special Places Map</h2>
+    <div id="map"></div>
+
+    <div id="form-container">
+        <div id="alert" class="alert"></div>
+        <label>Latitude: <input type="text" id="lat" placeholder="Enter Latitude"></label>
+        <label>Longitude: <input type="text" id="lng" placeholder="Enter Longitude"></label>
+        <label>Date: <input type="text" id="date" placeholder="Enter Date (e.g., 2022-04-15)"></label>
+        <label>Message: <textarea id="message" placeholder="Enter a message for this location"></textarea></label>
+        <label>Image URL: <input type="text" id="image-url" placeholder="Enter Image URL (optional)"></label>
+        <button onclick="addLocation()">Add Location</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([20, 0], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        const locations = [];
+
+        function showAlert(message) {
+            const alertBox = document.getElementById("alert");
+            alertBox.style.display = "block";
+            alertBox.innerText = message;
+            setTimeout(() => alertBox.style.display = "none", 3000);
+        }
+
+        function addLocation() {
+            const lat = parseFloat(document.getElementById("lat").value);
+            const lng = parseFloat(document.getElementById("lng").value);
+            const date = document.getElementById("date").value;
+            const message = document.getElementById("message").value;
+            const imageUrl = document.getElementById("image-url").value;
+
+            if (isNaN(lat) || isNaN(lng)) {
+                showAlert("Please enter valid latitude and longitude.");
+                return;
+            }
+            if (!date || !message) {
+                showAlert("Please fill in all required fields.");
+                return;
+            }
+
+            const icon = L.icon({
+                iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
+                iconSize: [30, 30]
+            });
+
+            const marker = L.marker([lat, lng], { icon }).addTo(map);
+
+            const popupContent = `
+                <h4>${date}</h4>
+                <p>${message}</p>
+                ${imageUrl ? `<img src="${imageUrl}" style="max-width:200px; max-height:150px;" />` : ''}
+            `;
+            marker.bindPopup(popupContent);
+
+            if (locations.length > 0) {
+                const lastLocation = locations[locations.length - 1];
+                L.polyline([lastLocation, [lat, lng]], { color: 'blue', weight: 2 }).addTo(map);
+            }
+
+            locations.push([lat, lng]);
+
+            map.flyTo([lat, lng], 5);
+            clearForm();
+        }
+
+        function clearForm() {
+            document.getElementById("lat").value = "";
+            document.getElementById("lng").value = "";
+            document.getElementById("date").value = "";
+            document.getElementById("message").value = "";
+            document.getElementById("image-url").value = "";
+        }
+    </script>
+</body>
+</html>
