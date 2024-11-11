@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/cesium@latest/Build/Cesium/Cesium.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@latest/Build/Cesium/Widgets/widgets.css">
-    <title>CesiumJS Example</title>
+    <title>Cesium 3D Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/cesium@1.123.1/Build/Cesium/Cesium.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.123.1/Build/Cesium/Widgets/widgets.css">
     <style>
-        html, body, #cesiumContainer {
+        #cesiumContainer {
             width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
+            height: 100vh;
         }
     </style>
-    <!-- Include CesiumJS from the CDN -->
-   
 </head>
 <body>
     <div id="cesiumContainer"></div>
 
     <script>
-        // Initialize Cesium viewer with terrain
         const viewer = new Cesium.Viewer('cesiumContainer', {
             imageryProvider: new Cesium.UrlTemplateImageryProvider({
                 url: 'https://assets.agi.com/stk-terrain/v1/tilesets/mars/tiles/{z}/{x}/{y}.png'
             }),
-            terrainProvider: Cesium.createWorldTerrain(),  // Using Cesium's World Terrain
+            terrainProvider: new Cesium.CesiumTerrainProvider({
+                url: Cesium.IonResource.fromAssetId(1)  // Terrain asset ID for default Cesium World Terrain
+            }),
             shouldAnimate: true
         });
 
-        // Add a model or building to Mars
         const building = viewer.entities.add({
             position: Cesium.Cartesian3.fromDegrees(137.4, -4.5, 5000),
             model: {
@@ -40,7 +36,6 @@
             }
         });
 
-        // Animate the building
         let height = 5000;
         let direction = 1;
         viewer.scene.preRender.addEventListener(() => {
@@ -53,5 +48,3 @@
     </script>
 </body>
 </html>
-
-
