@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World's Best Event Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        #map { height: 600px; width: 100%; max-width: 800px; margin-bottom: 20px; }
+        #control-panel {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        .control-group {
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, textarea, button {
+            margin: 5px 0;
+            padding: 8px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #icon-preview {
+            font-size: 2rem;
+        }
+        .alert {
+            color: red;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .popup-content {
+            background-color: #f0f9ff;
+            border: 2px solid #007bff;
+            padding: 10px;
+            border-radius: 10px;
+            color: #333;
+            font-size: 1rem;
+        }
+        .popup-content h4 {
+            margin: 0 0 5px 0;
+            color: #007bff;
+        }
+        .popup-content p {
+            margin: 5px 0;
+        }
+        .popup-content img {
+            display: block;
+            max-width: 200px;
+            max-height: 150px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>My Personalized Event Map</h2>
+    <div id="map"></div>
+
+    <div id="control-panel">
+        <div id="alert" class="alert"></div>
+
+        <div class="control-group">
+            <label>Latitude:</label>
+            <input type="text" id="lat" placeholder="Enter Latitude">
+        </div>
+
+        <div class="control-group">
+            <label>Longitude:</label>
+            <input type="text" id="lng" placeholder="Enter Longitude">
+        </div>
+
+        <div class="control-group">
+            <label>Date:</label>
+            <input type="text" id="date" placeholder="Enter Date (e.g., 2022-04-15)">
+        </div>
+
+        <div class="control-group">
+            <label>Event Name:</label>
+            <input type="text" id="event-name" placeholder="Enter Event Name">
+        </div>
+
+        <div class="control-group">
+            <label>Message:</label>
+            <textarea id="message" placeholder="Enter a message for this location"></textarea>
+        </div>
+
+        <div class="control-group">
+            <label>Image Upload or URL:</label>
+            <input type="file" id="image-upload">
+            <input type="text" id="image-url" placeholder="Enter Image URL (optional)">
+        </div>
+
+        <div class="control-group">
+            <label>Icon:</label>
+            <select id="icon-selector" onchange="updateIconPreview()">
+                <option value="📍">📍 Pin</option>
+                <option value="🎉">🎉 Celebration</option>
+                <option value="❤️">❤️ Love</option>
+                <option value="🌄">🌄 Adventure</option>
+                <option value="✈️">✈️ Travel</option>
+                <option value="🌍">🌍 Global</option>
+            </select>
+            <div id="icon-preview">📍</div>
+        </div>
+
+        <div class="control-group">
+            <label>Icon Size:</label>
+            <input type="range" id="icon-size" min="20" max="60" value="30" oninput="updateIconPreviewSize()">
+            <span id="icon-size-display">30px</span>
+        </div>
+
+        <button onclick="addLocation()">Add Location</button>
+        <button onclick="saveAsHTML()">Save Map as HTML</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([20, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        const locations = [];
+
+        function showAlert(message) {
+            const alertBox = document.getElementById("alert");
+            alertBox.style.display = "block";
+            alertBox.innerText = message;
+            setTimeout(() => alertBox.style.display = "none", 3000);
+        }
+
+        function updateIconPreview() {
+            document.getElementById("icon-preview").innerText = document.getElementById("icon-selector").value;
+        }
+
+        function updateIconPreviewSize() {
+            const size = document.getElementById("icon-size").value;
+            document.getElementById("icon-size-display").innerText = `${size}px`;
+            document.getElementById("icon-preview").style.fontSize = `${size}px`;
+        }
+
+        function addLocation() {
+            const lat = parseFloat(document.getElementById("lat").value);
+            const lng = parseFloat(document.getElementById("lng").value);
+            const date = document.getElementById("date").value;
+            const eventName = document.getElementById("event-name").value;
+            const message = document.getElementById("message").value;
+            const iconEmoji = document.getElementById("icon-selector").value;
+            const iconSize = document.getElementById("icon-size").value;
+            const imageInput = document.getElementById("image-upload");
+            const imageUrlInput = document.getElementById("image-url").value;
+
+            if (isNaN(lat) || isNaN(lng)) {
+                showAlert("Please enter valid latitude and longitude.");
+                return;
+            }
+            if (!date || !eventName || !message) {
+                showAlert("Please fill in all required fields.");
+                return;
+            }
+
+            const iconHtml = `<div style="font-size:${iconSize}px; line-height:1;">${iconEmoji}</div>`;
+            const icon = L.divIcon({ html: iconHtml, className: 'custom-icon', iconSize: [iconSize, iconSize] });
+
+            const marker = L.marker([lat, lng], { icon }).addTo(map);
+
+            let imageHtml = "";
+            if (imageInput.files.length > 0) {
+                const imageUrl = URL.createObjectURL(imageInput.files[0]);
+                imageHtml = `<img src="${imageUrl}" alt="User Image">`;
+            } else if (imageUrlInput) {
+                imageHtml = `<img src="${imageUrlInput}" alt="User Image">`;
+            }
+
+            const popupContent = `
+                <div class="popup-content">
+                    <h4>${eventName} - ${date}</h4>
+                    <p>${message}</p>
+                    ${imageHtml}
+                </div>
+            `;
+            marker.bindPopup(popupContent).openPopup();
+
+            if (locations.length > 0) {
+                const lastLocation = locations[locations.length - 1];
+                L.polyline([lastLocation, [lat, lng]], { color: 'blue', weight: 2 }).addTo(map);
+            }
+
+            locations.push([lat, lng]);
+            map.flyTo([lat, lng], 5);
+            clearForm();
+        }
+
+        function clearForm() {
+            document.getElementById("lat").value = "";
+            document.getElementById("lng").value = "";
+            document.getElementById("date").value = "";
+            document.getElementById("event-name").value = "";
+            document.getElementById("message").value = "";
+            document.getElementById("image-upload").value = "";
+            document.getElementById("image-url").value = "";
+            document.getElementById("icon-selector").value = "📍";
+            document.getElementById("icon-size").value = 30;
+            updateIconPreview();
+            updateIconPreviewSize();
+        }
+
+        function saveAsHTML() {
+            const mapHTML = document.documentElement.outerHTML;
+            const blob = new Blob([mapHTML], { type: 'text/html' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "my-event-map.html";
+            link.click();
+        }
+    </script>
+</body>
+</html>
