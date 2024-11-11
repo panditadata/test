@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World's Best Event Map</title>
-    <!-- Import high-performance map library -->
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,18 +13,26 @@
             align-items: center;
             margin: 0;
         }
-        #map { height: 600px; width: 100%; max-width: 800px; }
-        #form-container, #timeline {
-            margin-top: 10px;
+        #map { height: 600px; width: 100%; max-width: 800px; margin-bottom: 20px; }
+        #control-panel {
             width: 100%;
             max-width: 800px;
-        }
-        #timeline {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
         }
-        input, textarea, button {
+        .control-group {
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, textarea, button {
+            margin: 5px 0;
             padding: 8px;
             font-size: 1rem;
         }
@@ -38,6 +45,9 @@
         button:hover {
             background-color: #45a049;
         }
+        #icon-preview {
+            font-size: 2rem;
+        }
         .alert {
             color: red;
             font-size: 0.9rem;
@@ -46,34 +56,71 @@
     </style>
 </head>
 <body>
-    <h2>World's Best Event Map</h2>
+    <h2>My Personalized Event Map</h2>
     <div id="map"></div>
 
-    <div id="form-container">
+    <div id="control-panel">
         <div id="alert" class="alert"></div>
-        <label>Latitude: <input type="text" id="lat" placeholder="Enter Latitude"></label>
-        <label>Longitude: <input type="text" id="lng" placeholder="Enter Longitude"></label>
-        <label>Date: <input type="text" id="date" placeholder="Enter Date (e.g., 2022-04-15)"></label>
-        <label>Event Name: <input type="text" id="event-name" placeholder="Enter Event Name"></label>
-        <label>Message: <textarea id="message" placeholder="Enter a message for this location"></textarea></label>
-        <label>Image URL: <input type="text" id="image-url" placeholder="Enter Image URL (optional)"></label>
+        
+        <div class="control-group">
+            <label>Latitude:</label>
+            <input type="text" id="lat" placeholder="Enter Latitude">
+        </div>
+
+        <div class="control-group">
+            <label>Longitude:</label>
+            <input type="text" id="lng" placeholder="Enter Longitude">
+        </div>
+
+        <div class="control-group">
+            <label>Date:</label>
+            <input type="text" id="date" placeholder="Enter Date (e.g., 2022-04-15)">
+        </div>
+
+        <div class="control-group">
+            <label>Event Name:</label>
+            <input type="text" id="event-name" placeholder="Enter Event Name">
+        </div>
+
+        <div class="control-group">
+            <label>Message:</label>
+            <textarea id="message" placeholder="Enter a message for this location"></textarea>
+        </div>
+
+        <div class="control-group">
+            <label>Image URL:</label>
+            <input type="text" id="image-url" placeholder="Enter Image URL (optional)">
+        </div>
+
+        <div class="control-group">
+            <label>Icon:</label>
+            <select id="icon-selector" onchange="updateIconPreview()">
+                <option value="📍">📍 Pin</option>
+                <option value="🎉">🎉 Celebration</option>
+                <option value="❤️">❤️ Love</option>
+                <option value="🌄">🌄 Adventure</option>
+                <option value="✈️">✈️ Travel</option>
+                <option value="🌍">🌍 Global</option>
+            </select>
+            <div id="icon-preview">📍</div>
+        </div>
+
+        <div class="control-group">
+            <label>Icon Size:</label>
+            <input type="range" id="icon-size" min="20" max="60" value="30" oninput="updateIconPreviewSize()">
+            <span id="icon-size-display">30px</span>
+        </div>
+
         <button onclick="addLocation()">Add Location</button>
     </div>
 
-    <div id="timeline">
-        <!-- Placeholder for timeline slider for events by date -->
-        <label>View Events by Date: <input type="range" id="date-slider" min="0" max="100" /></label>
-    </div>
-
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [0, 20],
-            zoom: 2
-        });
+        const map = L.map('map').setView([20, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
         const locations = [];
 
@@ -84,6 +131,16 @@
             setTimeout(() => alertBox.style.display = "none", 3000);
         }
 
+        function updateIconPreview() {
+            document.getElementById("icon-preview").innerText = document.getElementById("icon-selector").value;
+        }
+
+        function updateIconPreviewSize() {
+            const size = document.getElementById("icon-size").value;
+            document.getElementById("icon-size-display").innerText = `${size}px`;
+            document.getElementById("icon-preview").style.fontSize = `${size}px`;
+        }
+
         function addLocation() {
             const lat = parseFloat(document.getElementById("lat").value);
             const lng = parseFloat(document.getElementById("lng").value);
@@ -91,6 +148,8 @@
             const eventName = document.getElementById("event-name").value;
             const message = document.getElementById("message").value;
             const imageUrl = document.getElementById("image-url").value;
+            const iconEmoji = document.getElementById("icon-selector").value;
+            const iconSize = document.getElementById("icon-size").value;
 
             if (isNaN(lat) || isNaN(lng)) {
                 showAlert("Please enter valid latitude and longitude.");
@@ -101,45 +160,26 @@
                 return;
             }
 
-            const marker = new mapboxgl.Marker()
-                .setLngLat([lng, lat])
-                .addTo(map);
+            const iconHtml = `<div style="font-size:${iconSize}px; line-height:1;">${iconEmoji}</div>`;
+            const icon = L.divIcon({ html: iconHtml, className: 'custom-icon', iconSize: [iconSize, iconSize] });
+
+            const marker = L.marker([lat, lng], { icon }).addTo(map);
 
             const popupContent = `
                 <h4>${eventName} - ${date}</h4>
                 <p>${message}</p>
                 ${imageUrl ? `<img src="${imageUrl}" style="max-width:200px; max-height:150px;" />` : ''}
             `;
-            marker.setPopup(new mapboxgl.Popup().setHTML(popupContent));
+            marker.bindPopup(popupContent);
 
             if (locations.length > 0) {
                 const lastLocation = locations[locations.length - 1];
-                const route = {
-                    'type': 'FeatureCollection',
-                    'features': [
-                        {
-                            'type': 'Feature',
-                            'geometry': {
-                                'type': 'LineString',
-                                'coordinates': [[lastLocation.lng, lastLocation.lat], [lng, lat]]
-                            }
-                        }
-                    ]
-                };
-                map.addSource(`route-${locations.length}`, { type: 'geojson', data: route });
-                map.addLayer({
-                    id: `route-layer-${locations.length}`,
-                    type: 'line',
-                    source: `route-${locations.length}`,
-                    paint: {
-                        'line-color': '#888',
-                        'line-width': 5
-                    }
-                });
+                L.polyline([lastLocation, [lat, lng]], { color: 'blue', weight: 2 }).addTo(map);
             }
 
-            locations.push({ lat, lng, date, eventName, message, imageUrl });
-            map.flyTo({ center: [lng, lat], zoom: 5 });
+            locations.push([lat, lng]);
+
+            map.flyTo([lat, lng], 5);
             clearForm();
         }
 
@@ -150,6 +190,10 @@
             document.getElementById("event-name").value = "";
             document.getElementById("message").value = "";
             document.getElementById("image-url").value = "";
+            document.getElementById("icon-selector").value = "📍";
+            document.getElementById("icon-size").value = 30;
+            updateIconPreview();
+            updateIconPreviewSize();
         }
     </script>
 </body>
