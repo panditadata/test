@@ -23,17 +23,17 @@
         // Initialize the Cesium Viewer with Mars imagery and terrain
         const viewer = new Cesium.Viewer('cesiumContainer', {
             imageryProvider: new Cesium.IonImageryProvider({
-                assetId: 3  // Mars default imagery
+                assetId: 13  // Mars imagery (Default from Cesium Ion)
             }),
             terrainProvider: new Cesium.CesiumTerrainProvider({
-                url: Cesium.IonResource.fromAssetId(4)  // Mars default terrain
+                url: Cesium.IonResource.fromAssetId(7)  // Mars terrain (Default from Cesium Ion)
             }),
             shouldAnimate: true
         });
 
         // Set camera to Mars coordinates
         viewer.camera.setView({
-            destination: Cesium.Cartesian3.fromDegrees(137.4, -4.6, 5000000), // Mars coordinates (Example: 137.4° E, 4.6° S)
+            destination: Cesium.Cartesian3.fromDegrees(137.4, 20.0, 5000000), // Mars coordinates (Longitude, Latitude)
             orientation: {
                 heading: Cesium.Math.toRadians(0),
                 pitch: Cesium.Math.toRadians(-30),
@@ -41,9 +41,9 @@
             }
         });
 
-        // Optional: Add a marker on Mars
+        // Optional: Add a marker on Mars (example position in the Tharsis volcanic region)
         const marker = viewer.entities.add({
-            position: Cesium.Cartesian3.fromDegrees(137.4, -4.6, 1000),  // Example position on Mars
+            position: Cesium.Cartesian3.fromDegrees(137.4, 20.0, 1000),  // Example position on Mars (Tharsis region)
             point: {
                 color: Cesium.Color.RED,
                 pixelSize: 10,
@@ -60,7 +60,7 @@
             if (height > 5000 || height < 1000) {
                 direction *= -1;
             }
-            marker.position = Cesium.Cartesian3.fromDegrees(137.4, -4.6, height);  // Adjust height of the marker
+            marker.position = Cesium.Cartesian3.fromDegrees(137.4, 20.0, height);  // Adjust height of the marker
         });
     </script>
 </body>
