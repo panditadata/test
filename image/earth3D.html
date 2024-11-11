@@ -23,10 +23,10 @@
         // Initialize the Cesium Viewer with Earth imagery and terrain
         const viewer = new Cesium.Viewer('cesiumContainer', {
             imageryProvider: new Cesium.IonImageryProvider({
-                assetId: 2  // Earth's default imagery
+                assetId: 2  // Earth default imagery
             }),
             terrainProvider: new Cesium.CesiumTerrainProvider({
-                url: Cesium.IonResource.fromAssetId(1)  // Earth's default terrain
+                url: Cesium.IonResource.fromAssetId(1)  // Earth default terrain
             }),
             shouldAnimate: true
         });
