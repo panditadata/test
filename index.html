@@ -287,6 +287,41 @@
         right: 15px;
     }
 }
+   /* Responsive adjustments */
+@media (max-width: 768px) {
+      .title {
+        font-size: 1.5em;
+      }
+
+      .button-container {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .sub-nav {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .search-bar {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+@media (max-width: 480px) {
+      .title {
+        font-size: 1.2em;
+      }
+
+      .subtitle {
+        font-size: 0.9em;
+      }
+
+      .button {
+        font-size: 0.9em;
+      }
+    }
 /* Center navigation buttons below title and description */
 nav {
     display: flex;
