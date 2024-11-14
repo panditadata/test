@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Earthquake Data - 24 Hours</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Include your styles -->
+
+    <!-- Include Leaflet CSS for the map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map { height: 500px; width: 100%; }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .control-section {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Live Earthquake Data - Last 24 Hours</h1>
+            <nav>
+                <a href="index.html">Back to Home</a>
+            </nav>
+        </header>
+
+        <!-- Filter Controls -->
+        <div class="control-section">
+            <div>
+                <label for="magnitude">Magnitude:</label>
+                <input type="range" id="magnitude" min="1" max="9" step="0.1" value="1" />
+                <span id="magnitude-value">1</span>
+            </div>
+            <div>
+                <label for="continent">Continent:</label>
+                <select id="continent">
+                    <option value="all">All</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="South America">South America</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div id="map"></div>
+
+        <!-- Earthquake List -->
+        <section>
+            <h2>Earthquakes in the Last 24 Hours</h2>
+            <ul id="earthquake-list">
+                <!-- Earthquake data will be dynamically populated here -->
+            </ul>
+        </section>
+    </div>
+
+    <!-- Include JavaScript for Leaflet, AJAX, and dynamic updates -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        const earthquakeDataUrl = "https://www.panditanimation.com/api/get_earthquakes/";
+
+        let earthquakeData = [];
+        let map;
+
+        // Initialize the map
+        function initMap() {
+            map = L.map('map').setView([0, 0], 2);  // Initial position is centered on the world
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+        }
+
+        // Function to fetch earthquake data
+        function fetchEarthquakeData() {
+            fetch(earthquakeDataUrl)
+                .then(response => response.json())
+                .then(data => {
+                    earthquakeData = data.features;
+                    displayEarthquakes(earthquakeData);  // Display the data after fetching
+                })
+                .catch(error => console.error("Error fetching earthquake data:", error));
+        }
+
+        // Function to display the earthquakes on the map and list
+        function displayEarthquakes(data) {
+            const earthquakeList = document.getElementById('earthquake-list');
+            earthquakeList.innerHTML = '';  // Clear existing list
+
+            data.forEach(earthquake => {
+                const { mag, place, time, coordinates, url } = earthquake.properties;
+                const [longitude, latitude, depth] = earthquake.geometry.coordinates;
+
+                // Add earthquake to the map
+                const marker = L.circleMarker([latitude, longitude], {
+                    color: getColorForMagnitude(mag),
+                    radius: mag * 2  // Radius proportional to the magnitude
+                }).addTo(map);
+
+                marker.bindPopup(`
+                    <strong>Magnitude:</strong> ${mag}<br>
+                    <strong>Location:</strong> ${place}<br>
+                    <strong>Time:</strong> ${new Date(time).toLocaleString()}<br>
+                    <strong>Depth:</strong> ${depth} km<br>
+                    <a href="${url}" target="_blank">More Info</a>
+                `);
+
+                // Add earthquake to the list
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <strong>Magnitude:</strong> ${mag} 
+                    <strong>Location:</strong> ${place} 
+                    <strong>Time:</strong> ${new Date(time).toLocaleString()} 
+                    <a href="${url}" target="_blank">More Info</a>
+                `;
+                earthquakeList.appendChild(listItem);
+            });
+        }
+
+        // Function to return color based on magnitude
+        function getColorForMagnitude(mag) {
+            if (mag >= 7) return 'red';
+            if (mag >= 5) return 'orange';
+            if (mag >= 3) return 'yellow';
+            return 'green';
+        }
+
+        // Function to update magnitude filter
+        document.getElementById('magnitude').addEventListener('input', function() {
+            const magnitude = this.value;
+            document.getElementById('magnitude-value').textContent = magnitude;
+            const filteredData = earthquakeData.filter(earthquake => earthquake.properties.mag >= magnitude);
+            displayEarthquakes(filteredData);
+        });
+
+        // Function to update continent filter
+        document.getElementById('continent').addEventListener('change', function() {
+            const continent = this.value;
+            const filteredData = continent === "all" ? earthquakeData : earthquakeData.filter(earthquake => earthquake.properties.place.includes(continent));
+            displayEarthquakes(filteredData);
+        });
+
+        // Initialize map and fetch earthquake data on page load
+        window.onload = () => {
+            initMap();
+            fetchEarthquakeData();
+        };
+    </script>
+</body>
+</html>
